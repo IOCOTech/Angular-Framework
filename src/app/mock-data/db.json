@@ -1,0 +1,93 @@
+{
+    "accountsFromB2C": [
+      {
+        "mockId": "new",
+        "accountIdentifier": "3ff2a60d-47a7-49b7-85f7-1177e23103d0",
+        "homeAccountIdentifier": "YzUzOTNmNDEtZmZjMi00YTczLWIwNjQtYTg3Mjc0YWZjZjYwLWIyY18xYV9zaWdudXA=.NmJmNjZhYmEtNDkzMS00NzQwLWEyNTktODgyNjg3MjM5NmZk",
+        "name": "Sakkie",
+        "idToken": {
+          "exp": 1586424795,
+          "nbf": 1586421195,
+          "ver": "1.0",
+          "iss": "https://{{app-name}}.b2clogin.com/{{tenantId}}/v2.0/",
+          "sub": "3ff2a60d-47a7-49b7-85f7-1177e23103d0",
+          "aud": "714270ac-cd7a-41eb-a4f6-583e6c850bf2",
+          "acr": "b2c_1a_signup",
+          "nonce": "41bcef94-9f53-4fa1-a251-96296092e2b3",
+          "iat": 1586421195,
+          "auth_time": 1586421195,
+          "email": "sakkie.vanzyl@eoh.co.za",
+          "newUser": true,
+          "name": "Sakkie",
+          "surname": "van Zyl"
+        },
+        "idTokenClaims": {
+          "exp": 1586424795,
+          "nbf": 1586421195,
+          "ver": "1.0",
+          "iss": "https://{{app-name}}.b2clogin.com/{{tenantId}}/v2.0/",
+          "sub": "3ff2a60d-47a7-49b7-85f7-1177e23103d0",
+          "aud": "714270ac-cd7a-41eb-a4f6-583e6c850bf2",
+          "acr": "b2c_1a_signup",
+          "nonce": "41bcef94-9f53-4fa1-a251-96296092e2b3",
+          "iat": 1586421195,
+          "auth_time": 1586421195,
+          "email": "sakkie.vanzyl@eoh.co.za",
+          "newUser": true,
+          "name": "Sakkie",
+          "surname": "van Zyl"
+        },
+        "environment": "https://{{app-name}}.b2clogin.com/{{tenantId}}/v2.0/"
+      },
+      {
+        "mockId": "existing",
+        "accountIdentifier": "df616126-5647-4020-b3b8-d71590130128",
+        "homeAccountIdentifier": "YzUzOTNmNDEtZmZjMi00YTczLWIwNjQtYTg3Mjc0YWZjZjYwLWIyY18xYV9zaWdudXA=.NmJmNjZhYmEtNDkzMS00NzQwLWEyNTktODgyNjg3MjM5NmZk",
+        "name": "Sakkie",
+        "idToken": {
+          "exp": 1586424795,
+          "nbf": 1586421195,
+          "ver": "1.0",
+          "iss": "https://{{app-name}}.b2clogin.com/{{tenantId}}/v2.0/",
+          "sub": "df616126-5647-4020-b3b8-d71590130128",
+          "aud": "829eeee0-f7d0-40b8-ae93-46ec8abf2913",
+          "acr": "b2c_1a_signup",
+          "nonce": "3c922111-3361-4037-a845-92f5c58190b5",
+          "iat": 1586421195,
+          "auth_time": 1586421195,
+          "email": "sakkie.vanzyl@eoh.co.za",
+          "newUser": false,
+          "name": "Sakkie",
+          "surname": "van Zyl"
+        },
+        "idTokenClaims": {
+          "exp": 1586424795,
+          "nbf": 1586421195,
+          "ver": "1.0",
+          "iss": "https://{{app-name}}.b2clogin.com/{{tenantId}}/v2.0/",
+          "sub": "df616126-5647-4020-b3b8-d71590130128",
+          "aud": "829eeee0-f7d0-40b8-ae93-46ec8abf2913",
+          "acr": "b2c_1a_signup",
+          "nonce": "3c922111-3361-4037-a845-92f5c58190b5",
+          "iat": 1586421195,
+          "auth_time": 1586421195,
+          "email": "sakkie89@gmail.com",
+          "newUser": false,
+          "name": "Sakkie",
+          "surname": "van Zyl"
+        },
+        "environment": "https://{{app-name}}.b2clogin.com/{{tenantId}}/v2.0/"
+      }
+    ]
+,
+    "users": [
+        {
+            "username": "Sakkie",
+            "surname": "van Zyl"
+        },
+        {
+            "username": "Pieter",
+            "surname": "Linde"
+        }
+    ]
+}

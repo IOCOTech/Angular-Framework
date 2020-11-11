@@ -28,17 +28,16 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
+              "assets": [
+                "src/config.json",
+                "src/assets"
               ],
               "optimization": true,
               "outputHashing": "all",
@@ -56,12 +55,74 @@
                 },
                 {
                   "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]
+            },
+            "developemnt": {
+              "assets": [
+                {
+                  "input": "src/environments/config/dev",
+                  "output": "/",
+                  "glob": "config.json"
+                },
+                "src/assets"
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/app-settings/app-settings.ts",
+                  "with": "src/environments/app-settings/app-settings.dev.ts"
+                }
+              ],
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "mock": {
+              "assets": [
+                {
+                  "input": "src/environments/config/mock",
+                  "output": "/",
+                  "glob": "config.json"
+                },
+                "src/assets"
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/app-settings/app-settings.ts",
+                  "with": "src/environments/app-settings/app-settings.mock.ts"
+                }
+              ],
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
               ]
             }
-          }
+          },
+          "assets": [
+            "src/favicon.ico",
+            "src/assets",
+            "src/config.json"
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -71,6 +132,12 @@
           "configurations": {
             "production": {
               "browserTarget": "ioco-angular-framework:build:production"
+            },
+            "developemnt": {
+              "browserTarget": "ioco-angular-framework:build:developemnt"
+            },
+            "mock": {
+              "browserTarget": "ioco-angular-framework:build:mock"
             }
           }
         },
@@ -92,6 +159,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -123,6 +191,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ioco-angular-framework"
+    }
+  },
+  "defaultProject": "ioco-angular-framework",
+  "cli": {
+    "analytics": "84fe9344-0ee1-4ac0-9ac7-94b8f8c31049"
+  }
 }

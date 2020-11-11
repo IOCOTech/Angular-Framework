@@ -1,0 +1,20 @@
+{
+    "$schema": "./environments/config/config.schema.json",
+    "apiBaseURL": "http://localhost:57418",
+    "appInsightsKey": "211f0722-a9f3-4c1c-b45f-4f5206a0dfbe",
+    "authentication": {
+        "clientId": "714270ac-cd7a-41eb-a4f6-583e6c850bf2",
+        "authority": "https://{domain}.b2clogin.com/12345c1a-207d-45fc-aec1-19cb93423c20/B2C_1A_signin",
+        "validateAuthority": false,
+        "redirectUri": "http://localhost:4200/oid-redirect",
+        "postLogoutRedirectUri": "http://localhost:4200",
+        "navigateToLoginRequestUrl": true
+    },
+    "logging": {
+        "errorLogTo": [
+            "console",
+            "appInsights"
+        ],
+        "loggingLevel": "info"
+    }
+}

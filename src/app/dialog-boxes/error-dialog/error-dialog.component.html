@@ -1,0 +1,17 @@
+<div fxLayout="column" fxLayoutGap="30px" class="container">
+    <div fxLayout="row" fxLayoutAlign="space-between start">
+        <div mat-dialog-title>{{header}}</div>
+        <mat-icon color="accent">{{icon}}</mat-icon>
+    </div>
+    <div fxLayout="column" fxLayoutGap="30px" fxLayoutAlign="space-around center">
+        <div mat-dialog-content>
+            <p>{{errorMessage}}</p>
+        </div>
+    </div>
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+        <button mat-raised-button *ngIf="displayReportIssueButton" color="accent" mat-dialog-close="true">
+            Report error
+        </button>
+        <button mat-raised-button color="primary" mat-dialog-close="false">Ok</button>
+    </div>
+</div>

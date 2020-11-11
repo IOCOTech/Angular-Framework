@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ioco-angular-framework'`, () => {
+  it(`should have as title '{{app-name}}'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ioco-angular-framework');
+      expect(app.title).toEqual('{{app-name}}');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ioco-angular-framework app is running!');
+      expect(compiled.querySelector('.content span').textContent).toContain('{{app-name}} app is running!');
   });
 });

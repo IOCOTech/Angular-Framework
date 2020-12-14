@@ -13,7 +13,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "lint:fix": "npm run lint --silent -- --fix",
-    "lint:watch": "onchange \"src/**/*.ts\" -- onerror \"npm run lint --silent\"  -t Error -m \"There are linting errors on your aYo portals - Admin project\"",
+    "lint:watch": "onchange \"src/**/*.ts\" -- onerror \"npm run lint --silent\"  -t Error -m \"There are linting errors on your Angular project\"",
     "e2e": "ng e2e"
   },
   "private": true,
@@ -31,6 +31,7 @@
     "@angular/router": "~10.0.2",
     "@azure/msal-angular": "^1.1.1",
     "@microsoft/applicationinsights-web": "^2.5.9",
+    "@ngneat/until-destroy": "^8.0.3",
     "dev-error-reporter": "^1.0.7",
     "msal": "^1.4.3",
     "rxjs": "~6.5.5",

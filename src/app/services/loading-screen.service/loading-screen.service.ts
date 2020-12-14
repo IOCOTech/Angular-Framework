@@ -19,11 +19,11 @@ export class ServiceLoadingScreen {
     this.loadingStatus.next(value);
   }
 
-  startLoading() {
+  startLoading(): void {
     this.loading = true;
   }
 
-  stopLoading() {
+  stopLoading(): void {
     this.loading = false;
   }
 }

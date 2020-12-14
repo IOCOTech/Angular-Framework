@@ -14,7 +14,7 @@ export class ServiceAuthentication implements AbstractServiceAuthentication {
 
     public isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     // The token model is defined in the B2C custom policies
-    public get account() { return this.serviceAuth.getAccount() as any as ModelAccountFromToken; }
+    public get account(): ModelAccountFromToken { return this.serviceAuth.getAccount() as any as ModelAccountFromToken; }
 
     constructor(
         private serviceAuth: MsalService, private broadcastService: BroadcastService,
@@ -24,7 +24,7 @@ export class ServiceAuthentication implements AbstractServiceAuthentication {
         this.updateLoginStatus();
     }
 
-    initializeAuthentication() {
+    initializeAuthentication(): void {
         this.broadcastService.subscribe('msal:loginSuccess', payload => {
             this.updateLoginStatus();
             this.serviceMonitor.logEvent(this, 'Successfully logged in');
@@ -57,7 +57,7 @@ export class ServiceAuthentication implements AbstractServiceAuthentication {
         ));
     }
 
-    private updateLoginStatus() {
+    private updateLoginStatus(): void {
         this.serviceMonitor.logEvent(this, 'Updating login status', { value: !!this.serviceAuth.getAccount() });
         if (this.serviceAuth.getAccount()) {
             this.serviceMonitor.userId = this.account.accountIdentifier;
@@ -65,17 +65,17 @@ export class ServiceAuthentication implements AbstractServiceAuthentication {
         this.isLoggedIn.next(!!this.serviceAuth.getAccount());
     }
 
-    setRegisterAuthority() {
+    setRegisterAuthority(): void {
         this.serviceMonitor.logEvent(this, 'MSAL set registration authority');
         this.serviceAuth.authority = this.endpoints.authorization.signup;
     }
 
-    setLoginAuthority() {
+    setLoginAuthority(): void {
         this.serviceMonitor.logEvent(this, 'MSAL set login authority');
         this.serviceAuth.authority = this.endpoints.authorization.login;
     }
 
-    logout() {
+    logout(): void {
         this.serviceMonitor.logEvent(this, 'MSAL logout');
         this.serviceAuth.logout();
     }

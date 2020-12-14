@@ -1,5 +1,4 @@
 import { Router } from '@angular/router';
-import { Models } from '../models/model-base.helper';
 import { Enums } from '../enums/enums';
 import { ModelUser } from '../models/users/user-details.model';
 
@@ -20,8 +19,8 @@ declare module '@angular/router' {
 }
 Router.prototype.Routes = new NavigationRoutes();
 
-// tslint:disable-next-line:space-before-function-paren
-Router.prototype.InitializeExtensionMethods = function () {
+// tslint:disable-next-line:typedef
+Router.prototype.InitializeExtensionMethods = function() {
     const router = (this as unknown as Router);
     if (!router.Navigation) {
         router.Navigation = new NavigationHelper(router);

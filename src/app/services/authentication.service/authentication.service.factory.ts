@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
 import { AppSettings } from 'src/environments/app-settings/app-settings';
 import { ServiceMonitoring } from '../monitor.service/monitor.service';
 import { Enums } from 'src/app/enums/enums';
+import { AbstractServiceAuthentication } from './authentication.service.abstract';
 
 export function FactoryServiceAuthentication(
     httpClient: HttpClient, serviceMonitor: ServiceMonitoring,
     serviceMsal: MsalService, serviceBroadcast: BroadcastService, endpoints: AbstractEndpoints, router: Router
-) {
+): AbstractServiceAuthentication {
     serviceMonitor.logEvent('FactoryServiceAuthentication', 'Authentication Service Factory loaded');
     switch (AppSettings.environment) {
         case Enums.Environments.MockData:

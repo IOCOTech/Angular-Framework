@@ -31,6 +31,7 @@
     "@angular/router": "~10.0.2",
     "@azure/msal-angular": "^1.1.1",
     "@microsoft/applicationinsights-web": "^2.5.9",
+    "dev-error-reporter": "^1.0.7",
     "msal": "^1.4.3",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

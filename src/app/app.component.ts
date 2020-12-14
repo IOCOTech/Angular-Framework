@@ -30,7 +30,7 @@ export class AppComponent {
         });
     }
 
-    openSnackBar(snackbarDetails: ModelSnackBarDetails) {
+    openSnackBar(snackbarDetails: ModelSnackBarDetails): void {
         // Added timeout because snackbar has a bug that gives a error if displayed on Init of component
         setTimeout(() => {
             this.snackbarRef = this.snackBar.openFromComponent(

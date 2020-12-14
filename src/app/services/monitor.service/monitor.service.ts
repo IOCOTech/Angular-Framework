@@ -64,7 +64,7 @@ export class ServiceMonitoring {
      * @param descriptionOfEvent - A short description of the event
      * @param properties map[string, string] - additional data used to filter events and metrics in the portal. Defaults to the origin name.
      */
-    logEvent(origin: any, descriptionOfEvent: string, properties?: { [key: string]: any }) {
+    logEvent(origin: any, descriptionOfEvent: string, properties?: { [key: string]: any }): void {
         const originName = this.getOriginName(origin);
         if (this.logTo.includes('console')) {
             if (this.loggingLevel === Enums.ErrorSeverityLevel.Info) {
@@ -93,7 +93,7 @@ export class ServiceMonitoring {
         }
     }
 
-    logMetric(nameOfMetric: string, averageOfMetric: number, propertiesToTrack?: { [key: string]: any }) {
+    logMetric(nameOfMetric: string, averageOfMetric: number, propertiesToTrack?: { [key: string]: any }): void {
         if (this.loggingLevel >= Enums.ErrorSeverityLevel.Info) {
             const metric: IMetricTelemetry = {
                 name: nameOfMetric,
@@ -116,7 +116,7 @@ export class ServiceMonitoring {
         origin: any, exception: Error | string,
         properties: { [key: string]: any } = {},
         severityLevel: ErrorSeverityLevel.Error | ErrorSeverityLevel.Critical = Enums.ErrorSeverityLevel.Error
-    ) {
+    ): void {
         const originName = this.getOriginName(origin);
         exception = typeof (exception) === 'string' ? new Error(exception) : exception;
         this.addUserIdToProperties(properties);
@@ -140,19 +140,19 @@ export class ServiceMonitoring {
         return originName;
     }
 
-    private addUserIdToProperties(properties: { [key: string]: any }) {
+    private addUserIdToProperties(properties: { [key: string]: any }): void {
         if (this.userId) {
             const userParameterName = 'user';
             properties[userParameterName] = this.userId;
         }
     }
 
-    private addOriginToProperties(origin: string, properties: { [key: string]: any }) {
+    private addOriginToProperties(origin: string, properties: { [key: string]: any }): void {
         const originParameterName = 'origin';
         properties[originParameterName] = origin;
     }
 
-    logTrace(message: string, properties?: { [key: string]: any }) {
-        this.appInsights.trackTrace(name, properties);
+    logTrace(message: string, properties?: { [key: string]: any }): void {
+        this.appInsights.trackTrace({ message, properties});
     }
 }

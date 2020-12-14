@@ -15,7 +15,7 @@ export class ServiceSnackBar {
         this.onSnackbar.emit(details);
     }
 
-    dismissSnackBar() {
+    dismissSnackBar(): void {
         this.onDismissSnackbar.emit();
     }
 

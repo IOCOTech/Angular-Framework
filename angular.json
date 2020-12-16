@@ -59,7 +59,7 @@
                 }
               ]
             },
-            "developemnt": {
+            "development": {
               "assets": [
                 {
                   "input": "src/environments/config/dev",

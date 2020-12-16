@@ -3,7 +3,7 @@ import { DevErrorHandler } from 'dev-error-reporter';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
-export class GlobalErrorHandler extends ErrorHandler {
+export class ConsoleErrorHandler extends ErrorHandler {
     // Creates new instance, the instance ensures errors are not shown twice until dismisses
     private errorReporter = new DevErrorHandler({
         appendToElement: 'app-root', // <-- App root as defined in index.html

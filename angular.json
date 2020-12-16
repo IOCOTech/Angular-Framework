@@ -133,8 +133,8 @@
             "production": {
               "browserTarget": "ioco-angular-framework:build:production"
             },
-            "developemnt": {
-              "browserTarget": "ioco-angular-framework:build:developemnt"
+            "development": {
+              "browserTarget": "ioco-angular-framework:build:development"
             },
             "mock": {
               "browserTarget": "ioco-angular-framework:build:mock"

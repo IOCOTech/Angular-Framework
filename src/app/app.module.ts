@@ -26,7 +26,7 @@ import { FactoryServiceAuthentication } from './services/authentication.service/
 import { ServiceConfig } from './services/config.service/config.service';
 import { FactoryServiceConfig } from './services/config.service/config.service.factory';
 import { ServiceMonitoring } from './services/monitor.service/monitor.service';
-import { GlobalErrorHandler } from '../app/helpers/console-error.helper';
+import { ConsoleErrorHandler } from '../app/helpers/console-error.helper';
 
 
 @NgModule({
@@ -60,7 +60,7 @@ import { GlobalErrorHandler } from '../app/helpers/console-error.helper';
       useFactory: FactoryServiceAuthentication,
       deps: [HttpClient, ServiceMonitoring, MsalService, BroadcastService, AbstractEndpoints, Router]
     },
-    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+    { provide: ErrorHandler, useClass: ConsoleErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

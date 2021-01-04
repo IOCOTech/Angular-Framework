@@ -1,11 +1,7 @@
-import { ApplicationInsights } from '@microsoft/applicationinsights-web';
 import { of } from 'rxjs';
-import { IAuthenticationConfig, ILogging } from 'src/environments/config/config.interface';
-import { IAuthorizationEndpoints, IUserEndpoints } from 'src/environments/endpoints/endpoints.abstract';
 import { Enums } from '../enums/enums';
 import * as MockData from '../mock-data/db.json';
-import { ModelAccountFromToken } from '../models/Authorization/account-from-token.model';
-import { Models } from '../models/model-base.helper';
+import { ModelAccountFromToken } from '../models/authorization/account-from-token.model';
 
 export class UnitTestHelpers {
 

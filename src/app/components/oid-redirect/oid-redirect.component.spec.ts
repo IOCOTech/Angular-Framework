@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { UnitTestModule } from 'src/app/unit-tests-helpers/unit-test.module';
 
 import { OidRedirectComponent } from './oid-redirect.component';
 
@@ -8,6 +9,7 @@ describe('OidRedirectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [UnitTestModule],
       declarations: [ OidRedirectComponent ]
     })
     .compileComponents();

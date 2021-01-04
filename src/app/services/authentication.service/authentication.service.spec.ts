@@ -1,32 +1,32 @@
-import { MsalService, BroadcastService } from '@azure/msal-angular';
-import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ServiceAuthentication } from './authentication.service';
+// import { MsalService, BroadcastService } from '@azure/msal-angular';
+// import { TestBed } from '@angular/core/testing';
+// import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+// import { ServiceAuthentication } from './authentication.service';
 
-describe('Service Authentictaion', () => {
+// describe('Service Authentictaion', () => {
 
-    let serviceAuth: ServiceAuthentication;
-    let httpTestingController: HttpTestingController;
+//     let serviceAuth: ServiceAuthentication;
+//     let httpTestingController: HttpTestingController;
 
-    beforeEach(() => {
+//     beforeEach(() => {
 
-        TestBed.configureTestingModule({
-            imports: [
-                HttpClientTestingModule
-            ],
-            providers: [
-                MsalService
-                , BroadcastService
-                , ServiceAuthentication
-            ]
-        });
+//         TestBed.configureTestingModule({
+//             imports: [
+//                 HttpClientTestingModule
+//             ],
+//             providers: [
+//                 MsalService
+//                 , BroadcastService
+//                 , ServiceAuthentication
+//             ]
+//         });
 
-        httpTestingController = TestBed.inject(HttpTestingController);
+//         httpTestingController = TestBed.inject(HttpTestingController);
 
-    });
+//     });
 
-    it('should initialize', () => {
-        serviceAuth = TestBed.inject(ServiceAuthentication);
-    });
+//     it('should initialize', () => {
+//         serviceAuth = TestBed.inject(ServiceAuthentication);
+//     });
 
-});
+// });

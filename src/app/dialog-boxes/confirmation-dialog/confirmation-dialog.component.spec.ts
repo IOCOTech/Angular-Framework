@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { UnitTestModule } from 'src/app/unit-tests-helpers/unit-test.module';
 
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 
@@ -8,6 +9,7 @@ describe('ConfirmationDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [UnitTestModule],
       declarations: [ ConfirmationDialogComponent ]
     })
     .compileComponents();

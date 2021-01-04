@@ -1,13 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { UnitTestModule } from 'src/app/unit-tests-helpers/unit-test.module';
 
-import { MonitorService } from './monitor.service';
+import { ServiceMonitoring } from './monitor.service';
 
 describe('MonitorService', () => {
-  let service: MonitorService;
+  let service: ServiceMonitoring;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(MonitorService);
+    TestBed.configureTestingModule({
+      imports: [
+        UnitTestModule
+      ]
+    });
+    service = TestBed.inject(ServiceMonitoring);
   });
 
   it('should be created', () => {

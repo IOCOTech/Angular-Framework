@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler, InjectionToken } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { ServiceConfig } from 'src/app/services/config.service/config.service';
 import { MSALConfigFactory, MSALAngularConfigFactory } from 'src/environments/msal/msal.config';
 import { MsalService, MSAL_CONFIG_ANGULAR, MSAL_CONFIG, MsalInterceptor, MsalModule } from '@azure/msal-angular';

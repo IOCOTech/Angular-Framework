@@ -1,7 +1,7 @@
 import { AbstractServiceAuthentication } from './authentication.service.abstract';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
-import { ModelAccountFromToken } from 'src/app/models/Authorization/account-from-token.model';
+import { ModelAccountFromToken } from 'src/app/models/authorization/account-from-token.model';
 import { HttpClient } from '@angular/common/http';
 import { AbstractEndpoints } from 'src/environments/endpoints/endpoints.abstract';
 

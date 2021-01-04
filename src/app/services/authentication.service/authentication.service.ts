@@ -4,7 +4,7 @@ import { AbstractEndpoints } from 'src/environments/endpoints/endpoints.abstract
 import { Logger, CryptoUtils } from 'msal';
 import { BehaviorSubject } from 'rxjs';
 import { AbstractServiceAuthentication } from './authentication.service.abstract';
-import { ModelAccountFromToken } from 'src/app/models/Authorization/account-from-token.model';
+import { ModelAccountFromToken } from 'src/app/models/authorization/account-from-token.model';
 import { ServiceMonitoring } from '../monitor.service/monitor.service';
 
 @Injectable({

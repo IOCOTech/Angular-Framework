@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { ModelAccountFromToken } from 'src/app/models/Authorization/account-from-token.model';
+import { ModelAccountFromToken } from 'src/app/models/authorization/account-from-token.model';
 
 /*
 This abstract class is used to wrap the authentication service so it can be mocked.

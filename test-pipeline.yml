@@ -1,0 +1,68 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+ containers:
+   - container: node
+     image: 'tiangolo/node-frontend:10'
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+     vmImage: 'ubuntu-latest'
+    steps:
+    - script: docker build -f Dockerfile.test -t angular-build:$BUILD_BUILDID .
+      displayName: Build docker image
+
+    - script: docker run --name angularapp --rm -d -it angular-build:$BUILD_BUILDID
+      displayName: Start docker container
+
+    - script: docker exec angularapp ls /app      
+      displayName: List files in working directory
+      
+    - script: docker exec angularapp ls /app/analytics      
+      displayName: List files in analytics directory
+      
+    - script: docker exec angularapp ls /app/analytics/junit    
+      displayName: List files in junit directory
+      
+    - script: exit    
+      displayName: Exit terminal
+
+    - script: |
+        docker cp angularapp:app/analytics/coverage/code-coverage.xml $(System.DefaultWorkingDirectory)
+        docker cp angularapp:app/analytics/coverage $(System.DefaultWorkingDirectory)/coverage     
+      displayName: Copy unit test reporting files to working directory
+      
+    - script: | 
+        docker cp angularapp:app/analytics/junit/report.xml $(System.DefaultWorkingDirectory)       
+      displayName: Copy junit reporting files to working directory
+
+    - script: docker stop angularapp
+      displayName: Stop docker container
+
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        codeCoverageTool: 'Cobertura'
+        summaryFileLocation: 'code-coverage.xml'
+        reportDirectory: 'coverage'
+        failIfCoverageEmpty: true
+      displayName: Publish code coverage results
+
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: 'report.xml'
+        failTaskOnFailedTests: true
+      displayName: Publish unit test results

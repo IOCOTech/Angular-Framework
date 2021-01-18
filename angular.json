@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "dev-error-reporter"
+            ],
             "outputPath": "dist/ioco-angular-framework",
             "index": "src/index.html",
             "main": "src/main.ts",

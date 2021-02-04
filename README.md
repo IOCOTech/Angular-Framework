@@ -1,19 +1,5 @@
 # IOCO Angular Framework
 
-
-
-## Required packages
-
-npm i onchange -g
-\
-npm i cli-error-notifier -g
-\
-npm i concurrently -g
-\
-npm i json-concat -g
-\
-npm i json-server -g
-
 ## To Run
 
 - Clone Repo

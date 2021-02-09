@@ -7,7 +7,6 @@ export class UnitTestHelpers {
 
     static MockObjects = class {
 
-
         static abstractAbstractEndpoints = jasmine.createSpyObj('AbstractEndpoints', {
 
 
@@ -134,8 +133,5 @@ export class UnitTestHelpers {
                 return;
             }
         });
-
     };
-
-
 }

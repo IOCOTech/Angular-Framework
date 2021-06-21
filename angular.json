@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Angular-Framework": {
+    "ioco-angular-framework": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Angular-Framework",
+            "outputPath": "dist/ioco-angular-framework",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -135,13 +135,13 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Angular-Framework:build:production"
+              "browserTarget": "ioco-angular-framework:build:production"
             },
             "development": {
-              "browserTarget": "Angular-Framework:build:development"
+              "browserTarget": "ioco-angular-framework:build:development"
             },
             "mock": {
-              "browserTarget": "Angular-Framework:build:mock"
+              "browserTarget": "ioco-angular-framework:build:mock"
             }
           },
           "defaultConfiguration": "development"
@@ -149,7 +149,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Angular-Framework:build"
+            "browserTarget": "ioco-angular-framework:build"
           }
         },
         "test": {
@@ -174,5 +174,5 @@
       }
     }
   },
-  "defaultProject": "Angular-Framework"
+  "defaultProject": "ioco-angular-framework"
 }

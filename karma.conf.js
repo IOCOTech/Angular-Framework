@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/Angular-Framework'),
+      dir: require('path').join(__dirname, './coverage/ioco-angular-framework'),
       subdir: '.',
       reporters: [
         { type: 'html' },

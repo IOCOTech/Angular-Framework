@@ -1,13 +1,19 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "aa201c5a-8b14-4a13-bf4a-8acbaca6cfe6"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ioco-angular-framework": {
+    "Angular-Framework": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "root": "",
@@ -17,15 +23,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": [
-              "dev-error-reporter"
-            ],
-            "outputPath": "dist/ioco-angular-framework",
+            "outputPath": "dist/Angular-Framework",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": true,
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -121,6 +124,7 @@
               ]
             }
           },
+          "defaultConfiguration": "production",
           "assets": [
             "src/favicon.ico",
             "src/assets",
@@ -129,25 +133,23 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "ioco-angular-framework:build"
-          },
           "configurations": {
             "production": {
-              "browserTarget": "ioco-angular-framework:build:production"
+              "browserTarget": "Angular-Framework:build:production"
             },
             "development": {
-              "browserTarget": "ioco-angular-framework:build:development"
+              "browserTarget": "Angular-Framework:build:development"
             },
             "mock": {
-              "browserTarget": "ioco-angular-framework:build:mock"
+              "browserTarget": "Angular-Framework:build:mock"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ioco-angular-framework:build"
+            "browserTarget": "Angular-Framework:build"
           }
         },
         "test": {
@@ -157,6 +159,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -167,37 +170,9 @@
             ],
             "scripts": []
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ioco-angular-framework:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "ioco-angular-framework:serve:production"
-            }
-          }
         }
       }
     }
   },
-  "defaultProject": "ioco-angular-framework",
-  "cli": {
-    "analytics": "84fe9344-0ee1-4ac0-9ac7-94b8f8c31049"
-  }
+  "defaultProject": "Angular-Framework"
 }

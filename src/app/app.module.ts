@@ -4,7 +4,7 @@ import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
-import { BroadcastService, MsalService } from '@azure/msal-angular';
+import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
 import { AbstractEndpoints } from 'src/environments/endpoints/endpoints.abstract';
 import { FactoryEndpoints } from 'src/environments/endpoints/endpoints.factory';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +16,6 @@ import { ConfirmationDialogComponent } from './dialog-boxes/confirmation-dialog/
 import { ErrorDialogComponent } from './dialog-boxes/error-dialog/error-dialog.component';
 import { InterceptorError } from './interceptors/error.interceptor';
 import { InterceptorLoadingScreen } from './interceptors/loading.interceptor';
-import { TokenInterceptor } from './interceptors/token.interceptor';
 import { MaterialDesignModule } from './modules/material-design/material-design.module';
 import {
   MicrosoftAuthenticationLibraryModule
@@ -53,12 +52,11 @@ import { ConsoleErrorHandler } from '../app/helpers/console-error.helper';
     // HTTP INTERCEPTORS
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorLoadingScreen, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorError, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: AbstractEndpoints, useFactory: FactoryEndpoints, deps: [ServiceConfig, ServiceMonitoring] },
     {
       provide: AbstractServiceAuthentication,
       useFactory: FactoryServiceAuthentication,
-      deps: [HttpClient, ServiceMonitoring, MsalService, BroadcastService, AbstractEndpoints, Router]
+      deps: [HttpClient, ServiceMonitoring, MsalService, MsalBroadcastService, AbstractEndpoints, Router]
     },
     { provide: ErrorHandler, useClass: ConsoleErrorHandler }
   ],

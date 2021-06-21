@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { ServiceConfig } from 'src/app/services/config.service/config.service';
-import { MSALConfigFactory, MSALAngularConfigFactory } from 'src/environments/msal/msal.config';
-import { MsalService, MSAL_CONFIG_ANGULAR, MSAL_CONFIG, MsalInterceptor, MsalModule } from '@azure/msal-angular';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import { MsalBroadcastService, MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent, MsalService } from '@azure/msal-angular';
+import { PublicClientApplication } from '@azure/msal-browser/dist/app/PublicClientApplication';
+import { BrowserCacheLocation, InteractionType } from '@azure/msal-browser';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
@@ -9,19 +9,56 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
   declarations: [],
   imports: [
-    MsalModule
+    MsalModule.forRoot(new PublicClientApplication({ // MSAL Configuration
+      auth: {
+        clientId: '4756cca9-9d36-4e3a-a88a-ff1a8624a95b',
+        authority: 'https://aautologin.b2clogin.com/fc214cde-4549-4870-822f-4ecfdcf8b211/B2C_1_Signup_Signin/',
+        navigateToLoginRequestUrl: true,
+        knownAuthorities: ['https://aautologin.b2clogin.com'],
+        redirectUri: 'http://localhost:4200/oid-redirect'
+      },
+      cache: {
+        cacheLocation: BrowserCacheLocation.LocalStorage,
+        storeAuthStateInCookie: true, // set to true for IE 11
+      },
+      system: {
+        loggerOptions: {
+          loggerCallback: () => { },
+          piiLoggingEnabled: false
+        }
+      }
+    }), {
+      interactionType: InteractionType.Redirect, // MSAL Guard Configuration
+    }, {
+      interactionType: InteractionType.Redirect, // MSAL Interceptor Configuration
+      protectedResourceMap: new Map([
+        ['https://graph.microsoft.com/v1.0/me', ['user.read']]
+      ])
+    })
   ]
 })
 export class MicrosoftAuthenticationLibraryModule {
-  static forRoot(): any {
+
+
+  static forRoot(): ModuleWithProviders<MicrosoftAuthenticationLibraryModule> {
     return {
       ngModule: MicrosoftAuthenticationLibraryModule,
       providers: [
-        { provide: MSAL_CONFIG, useFactory: MSALConfigFactory, deps: [ServiceConfig] },
-        { provide: MSAL_CONFIG_ANGULAR, useFactory: MSALAngularConfigFactory, deps: [ServiceConfig] },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: MsalInterceptor,
+          multi: true
+        },
         MsalService,
-        { provide: HTTP_INTERCEPTORS, useClass: MsalInterceptor, multi: true }
+        MsalGuard,
+        MsalBroadcastService
       ]
     };
   }
+  // static forRoot(): any {
+  //   return {
+  //     NgModule: MicrosoftAuthenticationLibraryModule,
+
+  //    };
+  // }
 }

@@ -74,13 +74,18 @@
                 },
                 "src/assets"
               ],
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/app-settings/app-settings.ts",
                   "with": "src/environments/app-settings/app-settings.dev.ts"
                 }
               ],
-              "vendorChunk": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -103,13 +108,18 @@
                 },
                 "src/assets"
               ],
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/app-settings/app-settings.ts",
                   "with": "src/environments/app-settings/app-settings.mock.ts"
                 }
               ],
-              "vendorChunk": false,
               "budgets": [
                 {
                   "type": "initial",

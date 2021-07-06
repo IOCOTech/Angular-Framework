@@ -42,8 +42,9 @@
           "configurations": {
             "production": {
               "assets": [
-                "src/config.json",
-                "src/assets"
+                "src/assets",
+                "src/config.json",                
+                "src/web.config"
               ],
               "optimization": true,
               "outputHashing": "all",

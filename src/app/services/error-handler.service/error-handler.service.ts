@@ -1,10 +1,10 @@
-import { Injectable, ErrorHandler } from '@angular/core';
-import { ServiceMonitoring } from '../monitor.service/monitor.service';
-import { ModelErrorDialogConfig } from 'src/app/models/dialog-data/error-dialog-config.model';
-import { Models } from 'src/app/models/model-base.helper';
+import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from 'src/app/dialog-boxes/error-dialog/error-dialog.component';
 import { Enums } from 'src/app/enums/enums';
+import { ModelErrorDialogConfig } from 'src/app/models/dialog-data/error-dialog-config.model';
+import * as Models from 'src/app/models/models';
+import { ServiceMonitoring } from '../monitor.service/monitor.service';
 
 @Injectable({
     providedIn: 'root'
@@ -31,7 +31,7 @@ export class ServiceErrorHandler {
     ): void {
         const errorToLog = error ?? errorMessage;
         this.serviceMonitoring.logException(origin, errorToLog);
-        const config: ModelErrorDialogConfig = Models.ErrorDialog.ErrorDialogConfig.Initialize(
+        const config: ModelErrorDialogConfig = Models.Initialize.ErrorDialog.ErrorDialogConfig(
             errorMessage, header, icon, displayReportIssueButton
         );
         this.dialog.open(ErrorDialogComponent, { data: config }).afterClosed().subscribe((reportIssue: string) => {

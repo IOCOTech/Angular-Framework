@@ -4,6 +4,7 @@ import { ModelSnackBarDetails } from './models/snack-bar/snack-bar-details.model
 import { ServiceSnackBar } from './services/snack-bar.service/snack-bar.service';
 import { AbstractServiceAuthentication } from './services/authentication.service/authentication.service.abstract';
 import './helpers/navigation-helper';
+import * as Models from 'src/app/models/models';
 
 @Component({
     selector: 'app-root',

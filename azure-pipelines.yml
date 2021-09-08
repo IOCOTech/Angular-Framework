@@ -22,7 +22,7 @@ stages:
     pool:
      vmImage: 'ubuntu-latest'
     steps:
-    - script: docker build -f Dockerfile.test -t angular-build:$BUILD_BUILDID .
+    - script: docker build -f dockerfile.test -t angular-build:$BUILD_BUILDID .
       displayName: Build docker image
 
     - script: docker run --name angularapp --rm -d -it angular-build:$BUILD_BUILDID

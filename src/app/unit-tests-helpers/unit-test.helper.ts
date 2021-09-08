@@ -1,6 +1,6 @@
 import { of } from 'rxjs';
 import { Enums } from '../enums/enums';
-import * as MockData from '../mock-data/db.json';
+import MockData from '../mock-data/db.json';
 import { ModelAccountFromToken } from '../models/authorization/account-from-token.model';
 
 export class UnitTestHelpers {

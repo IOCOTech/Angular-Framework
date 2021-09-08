@@ -5,11 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './dummy-router.component.html',
   styleUrls: ['./dummy-router.component.scss']
 })
-export class DummyRouterComponent implements OnInit {
+export class DummyRouterComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

@@ -13,6 +13,15 @@ npm start
 
 Follow the instruction below if you choose not use the Docker Dev Container.
 
+## Docker Instructions
+
+To build and run the docker files use the following commands
+- docker build -t diesel-rebate:test -f dockerfile.test .
+- docker run -d -it -p 80:8080 --name=diesel-rebate {{Image ID}}
+
+Open interactive terminal
+- docker exec -it diesel-rebate bash
+
 ## To Run
 
 - Clone Repo

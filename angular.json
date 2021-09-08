@@ -44,7 +44,8 @@
               "assets": [
                 "src/assets",
                 "src/config.json",                
-                "src/web.config"
+                "src/web.config",
+                "src/favicon.ico"
               ],
               "optimization": true,
               "outputHashing": "all",
@@ -107,7 +108,8 @@
                   "output": "/",
                   "glob": "config.json"
                 },
-                "src/assets"
+                "src/assets",
+                "src/favicon.ico"
               ],
               "buildOptimizer": false,
               "optimization": false,
@@ -135,12 +137,7 @@
               ]
             }
           },
-          "defaultConfiguration": "production",
-          "assets": [
-            "src/favicon.ico",
-            "src/assets",
-            "src/config.json"
-          ]
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

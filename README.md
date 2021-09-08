@@ -5,8 +5,10 @@
 This project is configured to run in a Dev Container. No need to install any packages, just open project in remote container using VS Code.
 The container will be created, packages installed and extensions loaded in VS Code.
 
-To run project, open a terminal and run:
+Disable WSL 2 in docker for faster performance \
+In Docker under settings --> resources --> File Sharing add the root folder of the application
 
+To run project, open a terminal and run:
 ```
 npm start
 ```

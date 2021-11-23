@@ -13,4 +13,8 @@ RUN npm install
 RUN npm install -g @angular/cli@12.0.5
 COPY ./ /app/
 # Run unit tests
-RUN ng test --code-coverage --browsers ChromeHeadlessNoSandbox --watch=false 
+RUN ng test --code-coverage --browsers ChromeHeadlessNoSandbox --watch=false; exit 0
+# Configuration can be read from environmental variables setup on the CI/CD server
+ARG configuration=production
+# Build the angular application
+RUN ng build --output-path=./dist/out --configuration $configuration

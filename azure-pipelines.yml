@@ -3,15 +3,20 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- main
-
+  - main
+  
 resources:
- containers:
-   - container: node
-     image: 'tiangolo/node-frontend:10'
+  containers:
+    - container: node
+      image: ' node:14'
 
 variables:
-  tag: '$(Build.BuildId)'
+  # Docker Container registry variables
+  imageRepository: 'bettertravel'
+  containerRegistry: 'bettertravel.azurecr.io'
+  dockerTestfilePath: '$(Build.SourcesDirectory)/dockerfile.test'
+  dockerReleasefilePath: '$(Build.SourcesDirectory)/dockerfile.prod'
+  tag: '$(Build.BuildId)-$(Build.SourceVersion)'
 
 stages:
 - stage: Build
@@ -20,38 +25,36 @@ stages:
   - job: Build
     displayName: Build
     pool:
-     vmImage: 'ubuntu-latest'
+      vmImage: 'ubuntu-latest'
     steps:
-    - script: docker build -f dockerfile.test -t angular-build:$BUILD_BUILDID .
-      displayName: Build docker image
+    - script: docker build --no-cache -f $(dockerTestfilePath) -t angular-build:$BUILD_BUILDID .
+      displayName: Build docker test image
 
     - script: docker run --name angularapp --rm -d -it angular-build:$BUILD_BUILDID
       displayName: Start docker container
-
-    - script: docker exec angularapp ls /app      
-      displayName: List files in working directory
       
-    - script: docker exec angularapp ls /app/analytics      
-      displayName: List files in analytics directory
-      
-    - script: docker exec angularapp ls /app/analytics/junit    
-      displayName: List files in junit directory
-      
-    - script: exit    
-      displayName: Exit terminal
+    - script: |
+        docker cp angularapp:app/analytics/junit/report.xml $(System.DefaultWorkingDirectory) 
+        docker cp angularapp:app/analytics/coverage/code-coverage.xml $(System.DefaultWorkingDirectory)
+        docker cp angularapp:app/analytics/coverage $(System.DefaultWorkingDirectory)/coverage   
+      displayName: Copy reports
 
     - script: |
-        docker cp angularapp:app/analytics/coverage/code-coverage.xml $(System.DefaultWorkingDirectory)
-        docker cp angularapp:app/analytics/coverage $(System.DefaultWorkingDirectory)/coverage     
-      displayName: Copy unit test reporting files to working directory
+        mkdir -p $(System.DefaultWorkingDirectory)/dockerfile
+        docker cp angularapp:app/dockerfile.release  $(System.DefaultWorkingDirectory)/dockerfile/dockerfile.release
+        docker cp angularapp:app/nginx-custom.conf  $(System.DefaultWorkingDirectory)/dockerfile/nginx-custom.conf
+      displayName: Copy docker file with config
       
-    - script: | 
-        docker cp angularapp:app/analytics/junit/report.xml $(System.DefaultWorkingDirectory)       
-      displayName: Copy junit reporting files to working directory
-
+    - script: |
+        docker cp angularapp:app/dist/out $(System.DefaultWorkingDirectory)/out
+      displayName: Copy compiled output
+      
+    # - script: docker exec angularapp ls /app/analytics      
+    #   displayName: List files in analytics directory
+      
     - script: docker stop angularapp
       displayName: Stop docker container
-
+      
     - task: PublishCodeCoverageResults@1
       inputs:
         codeCoverageTool: 'Cobertura'
@@ -65,4 +68,16 @@ stages:
         testResultsFormat: 'JUnit'
         testResultsFiles: 'report.xml'
         failTaskOnFailedTests: true
-      displayName: Publish unit test results
+      displayName: Publish unit testing results
+      
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: '$(System.DefaultWorkingDirectory)/dockerfile'
+        artifactName: dockerfile
+      displayName: Publish dockerfile as artifact
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        pathToPublish: '$(System.DefaultWorkingDirectory)/out'
+        artifactName: distribution
+      displayName: Publish distribution output

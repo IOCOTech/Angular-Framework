@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "aa201c5a-8b14-4a13-bf4a-8acbaca6cfe6"
+    "analytics": "072924e6-607a-4f79-9caa-54ced81f6f7c",
+    "defaultCollection": "@angular-eslint/schematics"
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -43,7 +44,7 @@
             "production": {
               "assets": [
                 "src/assets",
-                "src/config.json",                
+                "src/config.json",
                 "src/web.config",
                 "src/favicon.ico"
               ],
@@ -137,7 +138,8 @@
               ]
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "production",
+          "assets": null
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -177,6 +179,15 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }

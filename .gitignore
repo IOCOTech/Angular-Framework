@@ -9,13 +9,15 @@
 
 # dependencies
 /node_modules
+npm-debug.log
+yarn-error.log
 
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json
 
 # IDEs and editors
-/.idea
+.idea/
 .project
 .classpath
 .c9/
@@ -32,7 +34,8 @@ speed-measure-plugin*.json
 !.vscode/ioco-custom-snippets.code-snippets
 .history/*
 
-# misc
+# Miscellaneous
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage

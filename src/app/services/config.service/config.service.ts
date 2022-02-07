@@ -8,6 +8,7 @@ import {
 } from 'src/environments/config/config.interface';
 import { AppSettings } from 'src/environments/app-settings/app-settings';
 import { Enums } from 'src/app/enums/enums';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -36,9 +37,9 @@ export class ServiceConfig implements IConfig {
   }
   // This method must return a promise for the APP_INITIALIZER to work correctly
   loadConfig(): Promise<void> {
-    return this.http
-      .get<IConfig>(AppSettings.configFileLocation)
-      .toPromise()
+    const observable = this.http.get<IConfig>(AppSettings.configFileLocation)
+    var promise = firstValueFrom(observable);
+    return promise
       .then((config: IConfig) => {
         this.apiBaseURL = config.apiBaseURL;
         this.appInsightsKey = config.appInsightsKey;

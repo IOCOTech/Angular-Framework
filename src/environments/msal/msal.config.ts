@@ -14,7 +14,7 @@ export function MSALInstanceFactory(serviceConfig: ServiceConfig): IPublicClient
             clientId: serviceConfig.authentication.clientId,
             authority: serviceConfig.authentication.authority,
             navigateToLoginRequestUrl: serviceConfig.authentication.navigateToLoginRequestUrl,
-            knownAuthorities: ['https://arenalogin.b2clogin.com', 'http://localhost:4200'],
+            knownAuthorities: ['https://{tenant-name}.b2clogin.com'],
             redirectUri: serviceConfig.authentication.redirectUri,
             postLogoutRedirectUri: serviceConfig.authentication.postLogoutRedirectUri
           },

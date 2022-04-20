@@ -1,3 +1,4 @@
+import { Location } from "@angular/common";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Router } from '@angular/router';

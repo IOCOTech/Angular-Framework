@@ -1,6 +1,7 @@
 # Docker
 # Build a Docker image 
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+name: $(date:yyyyMMdd)$(rev:.r)
 
 trigger:
   - main
@@ -11,73 +12,132 @@ resources:
       image: ' node:14'
 
 variables:
-  # Docker Container registry variables
-  imageRepository: 'bettertravel'
-  containerRegistry: 'bettertravel.azurecr.io'
-  dockerTestfilePath: '$(Build.SourcesDirectory)/dockerfile.test'
-  dockerReleasefilePath: '$(Build.SourcesDirectory)/dockerfile.prod'
-  tag: '$(Build.BuildId)-$(Build.SourceVersion)'
+  dockerRegistryServiceConnection: 'Google Container Registry'
+  imageRepository: 'subscription-management-stage/arena-artifacts'
+  containerRegistry: 'gcr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/dockerfile'  
+  tag: '$(Build.BuildNumber)'
+  dockerImageName: '$(containerRegistry)/$(imageRepository):$(tag)'
 
 stages:
-- stage: Build
-  displayName: Build image
-  jobs:  
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - script: docker build --no-cache -f $(dockerTestfilePath) -t angular-build:$BUILD_BUILDID .
-      displayName: Build docker test image
+  - stage: Build
+    displayName: Build image
+    jobs:  
+    - job: Build
+      displayName: Build
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
 
-    - script: docker run --name angularapp --rm -d -it angular-build:$BUILD_BUILDID
-      displayName: Start docker container
-      
-    - script: |
-        docker cp angularapp:app/analytics/junit/report.xml $(System.DefaultWorkingDirectory) 
-        docker cp angularapp:app/analytics/coverage/code-coverage.xml $(System.DefaultWorkingDirectory)
-        docker cp angularapp:app/analytics/coverage $(System.DefaultWorkingDirectory)/coverage   
-      displayName: Copy reports
+      # - task: Docker@2
+      #   displayName: Build docker image
+      #   inputs:
+      #     command: build
+      #     repository: $(imageRepository)
+      #     dockerfile: $(dockerfilePath)
+      #     containerRegistry: $(dockerRegistryServiceConnection)
+      #     tags: |
+      #       latest
+      #       $(tag)
+      #     buildContext: $(Build.SourcesDirectory)
 
-    - script: |
-        mkdir -p $(System.DefaultWorkingDirectory)/dockerfile
-        docker cp angularapp:app/dockerfile.release  $(System.DefaultWorkingDirectory)/dockerfile/dockerfile.release
-        docker cp angularapp:app/nginx-custom.conf  $(System.DefaultWorkingDirectory)/dockerfile/nginx-custom.conf
-      displayName: Copy docker file with config
       
-    - script: |
-        docker cp angularapp:app/dist/out $(System.DefaultWorkingDirectory)/out
-      displayName: Copy compiled output
-      
-    # - script: docker exec angularapp ls /app/analytics      
-    #   displayName: List files in analytics directory
-      
-    - script: docker stop angularapp
-      displayName: Stop docker container
-      
-    - task: PublishCodeCoverageResults@1
-      inputs:
-        codeCoverageTool: 'Cobertura'
-        summaryFileLocation: 'code-coverage.xml'
-        reportDirectory: 'coverage'
-        failIfCoverageEmpty: true
-      displayName: Publish code coverage results
+      - script: docker build --no-cache -f $(dockerTestfilePath) -t $(dockerImageName) .
+        displayName: Build docker test image
+  
+      - script: docker run --name angularapp --rm -d -it $(dockerImageName)
+        displayName: Start docker container
+  
+      - script: docker exec angularapp ls      
+        displayName: List files in working directory
+        continueOnError: true
+        
+      - script: docker exec angularapp ls /analytics      
+        displayName: List files in analytics directory
+        continueOnError: true
+        
+      - script: exit    
+        displayName: Exit terminal
 
-    - task: PublishTestResults@2
-      inputs:
-        testResultsFormat: 'JUnit'
-        testResultsFiles: 'report.xml'
-        failTaskOnFailedTests: true
-      displayName: Publish unit testing results
-      
-    - task: PublishBuildArtifacts@1
-      inputs:
-        pathToPublish: '$(System.DefaultWorkingDirectory)/dockerfile'
-        artifactName: dockerfile
-      displayName: Publish dockerfile as artifact
+      - script: |
+          docker cp angularapp:analytics $(System.DefaultWorkingDirectory)/analytics
+        displayName: Copy test reports
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-        pathToPublish: '$(System.DefaultWorkingDirectory)/out'
-        artifactName: distribution
-      displayName: Publish distribution output
+      - script: docker stop angularapp
+        displayName: Stop docker container        
+
+      - script: ls $(System.DefaultWorkingDirectory)
+        displayName: Stop docker container
+        continueOnError: true
+  
+      - task: PublishCodeCoverageResults@1
+        inputs:
+          codeCoverageTool: 'Cobertura'
+          summaryFileLocation: $(System.DefaultWorkingDirectory)/analytics/cobertura-coverage.xml
+          failIfCoverageEmpty: true
+        displayName: Publish code coverage results
+  
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: 'JUnit'
+          testResultsFiles: 'analytics/junit_report.xml'
+          failTaskOnFailedTests: true
+        displayName: Publish unit test results
+      
+      # - task: SonarQubePrepare@5
+      #   displayName: SonarQube prepare stage
+      #   inputs:
+      #     SonarQube: 'IOCO SonarQube'
+      #     scannerMode: 'CLI'
+      #     configMode: 'manual'
+      #     cliProjectKey: 'Arena_Scrum_Arena-Subscriptions-Web'
+      #     cliProjectName: 'Arena-Subscriptions-Web'
+      #     cliSources: '.'
+      #   continueOnError: true
+
+      # - powershell: |
+      #     $params = "$env:SONARQUBE_SCANNER_PARAMS" -replace '"sonar.branch.name":"[\w,/,-]*"\,?' 
+      #     Write-Host "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
+      #   displayName: Remove parameter "sonar.branch.name" required for licensed SonarQube editions
+      #   continueOnError: true
+
+      # - powershell: |
+      #     $params = "$env:SONARQUBE_SCANNER_PARAMS" -replace '"sonar.pullrequest.branch":"[\w,/,-]*"\,?' 
+      #     Write-Host "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
+      #   displayName: Remove parameter "sonar.pullrequest.branch" required for licensed SonarQube editions
+      #   continueOnError: true
+
+      # - powershell: |
+      #     $params = "$env:SONARQUBE_SCANNER_PARAMS" -replace '"sonar.pullrequest.key":"[\w,/,-]*"\,?' 
+      #     Write-Host "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
+      #   displayName: Remove parameter "sonar.pullrequest.key" required for licensed SonarQube editions
+      #   continueOnError: true
+              
+      # - powershell: |
+      #     $params = "$env:SONARQUBE_SCANNER_PARAMS" -replace '"sonar.pullrequest.base":"[\w,/,-]*"\,?' 
+      #     Write-Host "##vso[task.setvariable variable=SONARQUBE_SCANNER_PARAMS]$params"
+      #   displayName: Remove parameter "sonar.pullrequest.base" required for licensed SonarQube editions
+      #   continueOnError: true
+
+      # - task: SonarQubeAnalyze@5
+      #   displayName: SonarQube analyze stage
+      #   continueOnError: true
+
+      # - task: SonarQubePublish@5
+      #   displayName: SonarQube publish stage
+      #   inputs:
+      #     pollingTimeoutSec: '300'
+      #   continueOnError: true
+
+      # - script: docker images
+      #   displayName: List docker images
+          
+      # - task: Docker@2
+      #   displayName: Push image to container registry
+      #   inputs:
+      #     command: push
+      #     repository: $(imageRepository)
+      #     containerRegistry: $(dockerRegistryServiceConnection)
+      #     tags: |
+      #       latest
+      #       $(tag)

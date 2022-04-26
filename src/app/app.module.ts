@@ -4,7 +4,7 @@ import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
-import { MsalBroadcastService, MsalService } from '@azure/msal-angular';
+import { MsalBroadcastService, MsalRedirectComponent, MsalService } from '@azure/msal-angular';
 import { AbstractEndpoints } from 'src/environments/endpoints/endpoints.abstract';
 import { FactoryEndpoints } from 'src/environments/endpoints/endpoints.factory';
 import { AppRoutingModule } from './app-routing.module';
@@ -60,6 +60,6 @@ import { ConsoleErrorHandler } from '../app/helpers/console-error.helper';
     },
     { provide: ErrorHandler, useClass: ConsoleErrorHandler }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, MsalRedirectComponent]
 })
 export class AppModule { }

@@ -1,4 +1,32 @@
-/* You can add global styles to this file, and also import other style files */
+@charset 'utf-8';
+//  1. Google fonts & material icons - hosted locally
+// Uncomment these and update the urls of the fonts if you host fonts/icons locally
+//  -----------------------------------------------
+// @import './app/styles/material-icons.scss';
+// @import './app/styles/material-fonts.scss';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+//  2. Global Imports
+//  -----------------------------------------------
+@import './styles/themes/default.scss';
+@import './styles/general/_variables.scss';
+@import './styles/themes/color-variable.scss';
+
+//  3. Generic Imports
+//  -----------------------------------------------
+@import './styles/general/reset.scss';
+@import './styles/general/mixins.scss';
+@import './styles/general/_text.scss';
+@import './styles/general/_spacing.scss';
+@import './styles/general/_layout.scss';
+@import './styles/general/_utilities.scss';
+
+//  3. Custom Imports
+// Add custom scss files here
+//  -----------------------------------------------
+@import './styles/custom/_toolbar.scss';
+
+//Dark theme
+@import './styles/general/dark-theme.scss';
+
+//Responsive
+@import './styles/general/responsive.scss';

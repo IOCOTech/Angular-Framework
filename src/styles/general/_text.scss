@@ -1,0 +1,40 @@
+//   Text
+//  -----------------------------------------------
+* {
+  font-family: $font-family-regular;
+}
+//  1. Text Alignment
+//  -----------------------------------------------
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
+
+//  2. Text Size
+@each $j in $font-size-values {
+  .text-size-#{nth($j, 1)} {
+    font-size: nth($j, 2);
+  }
+}
+
+//  3. Line Height
+@each $j in $font-line-height-values {
+  .line-height-#{nth($j, 1)} {
+    line-height: nth($j, 2);
+  }
+}
+
+//  4. Font weight
+@each $j in $font-weight-values {
+  .font-weight-#{nth($j, 1)} {
+    font-weight: nth($j, 2);
+  }
+}

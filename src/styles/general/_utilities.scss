@@ -1,0 +1,207 @@
+//  ***** Disclamer *****
+//  The Utilities file contains all the default styles for general css like 'display: none' to use with class names.
+//  *********************
+//  Table of Contents:
+//
+//  1. Dispaly
+//  2. Opacity
+//  3. Z -index
+//  4. Floats
+//  5. Column
+//  6. Interact with elements
+//  7. Overflow
+//  8. Border-radius
+//  9. Margin-auto
+//  10. Break-words
+//  11. Links Underline
+//  12. Normalize font-weight
+//  13. Pre-wrap white-space
+//  14. Background transparent
+//  15. Vertical Align
+
+//  Utilities Style Settings
+//  -----------------------------------------------
+
+//  1. Dispaly
+//  -----------------------------------------------
+.display-none {
+  display: none !important;
+}
+.display-inline {
+  display: inline;
+}
+.display-block {
+  display: block;
+}
+.display-inline-block {
+  display: inline-block;
+}
+.display-inline-flex {
+  display: inline-flex;
+}
+.display-visibility {
+  visibility: hidden;
+}
+
+//  2. Opacity
+//  -----------------------------------------------
+@for $i from 0 to 101 {
+  .opacity-#{$i} {
+    opacity: calc($i/100);
+  }
+}
+
+// 3. z-index
+//  -----------------------------------------------
+.index-900 {
+  z-index: 900;
+}
+.index-500 {
+  z-index: 500;
+}
+.index-100 {
+  z-index: 100;
+}
+
+//  4. Floats
+//  -----------------------------------------------
+.float-right {
+  float: right;
+}
+.float-left {
+  float: left;
+}
+.float-clear-both {
+  clear: both;
+}
+.float-clear-l {
+  clear: left;
+}
+.float-clear-r {
+  clear: right;
+}
+
+//  5. Column
+//  -----------------------------------------------
+@for $i from 0 to 11 {
+  .col-count-#{$i} {
+    column-count: $i;
+  }
+}
+
+//  6. Interact with elements
+//  -----------------------------------------------
+.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+//  7. Overflow
+//  -----------------------------------------------
+.overflow-hidden {
+  overflow: hidden;
+}
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+.overflow-y-auto {
+  overflow-y: auto;
+}
+.overflow-x-auto {
+  overflow-x: auto;
+}
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-scroll {
+  overflow: scroll;
+}
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+//  8. Border-radius
+//  -----------------------------------------------
+@for $i from 0 to 101 {
+  .border-radius-#{$i} {
+    border-radius: $i * 1%;
+  }
+  .border-radius-top-#{$i} {
+    border-radius: $i * 1% $i * 1% 0 0;
+  }
+  .border-radius-top-l-#{$i} {
+    border-radius: $i * 1% 0 0 0;
+  }
+  .border-radius-top-r-#{$i} {
+    border-radius: 0 $i * 1% 0 0;
+  }
+  .border-radius-bottom-#{$i} {
+    border-radius: 0 0 $i * 1% $i * 1%;
+  }
+  .border-radius-bottom-l-#{$i} {
+    border-radius: 0 0 0 $i * 1%;
+  }
+  .border-radius-bottom-r-#{$i} {
+    border-radius: 0 0 $i * 1% 0;
+  }
+}
+
+//  9. Margin-auto
+//  -----------------------------------------------
+.m-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//  10. Break-words
+//  -----------------------------------------------
+.break-words {
+  word-break: break-word;
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+//  11. Links Underline
+//  -----------------------------------------------
+.links-underline {
+  &.u-primary {
+    text-decoration: underline var(--app-color-primary);
+  }
+  &.u-accent {
+    text-decoration: underline var(--app-color-accent);
+  }
+  cursor: pointer;
+}
+
+//  12. Normalize font-weight
+//  -----------------------------------------------
+.font-weight-normal {
+  font-weight: $font-weight-f0;
+}
+
+//  13. Pre-wrap white-space
+//  -----------------------------------------------
+.text-style-pre-wrap {
+  white-space: pre-wrap;
+}
+
+//  14. Background transparent
+//  -----------------------------------------------
+.bg-transparent {
+  background-color: transparent;
+}
+
+//  15.Vertical Align
+//  -----------------------------------------------
+.vertical-middle {
+  vertical-align: middle;
+}

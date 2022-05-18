@@ -1,0 +1,244 @@
+@use '@angular/material' as mat;
+@include mat.core();
+@import './color-variable.scss';
+
+// set The light and dark background colours
+$light-background: #ffffff;
+$dark-background: #4a4a4a;
+
+$dark-contrast: #000000;
+$light-contrast: #ffffff;
+
+// Available color palettes: https://material.io/design/color/
+// define a color palette (using http://mcg.mbitson.com)
+
+$color-primary: (
+  50: #e0e6eb,
+  100: #b3bfcd,
+  200: #8c98ab,
+  300: #5e6f89,
+  400: #3c5070,
+  500: #002b58,
+  600: #002650,
+  700: #002047,
+  800: #001a3d,
+  900: #00102d,
+  A100: #678eff,
+  A200: #3468ff,
+  A400: #0143ff,
+  A700: #003ce6,
+  contrast: (
+    50: $dark-contrast,
+    100: $dark-contrast,
+    200: $dark-contrast,
+    300: $light-contrast,
+    400: $light-contrast,
+    500: $light-contrast,
+    600: $light-contrast,
+    700: $light-contrast,
+    800: $light-contrast,
+    900: $light-contrast,
+    A100: $dark-contrast,
+    A200: $light-contrast,
+    A400: $light-contrast,
+    A700: $light-contrast,
+  ),
+);
+$color-accent: (
+  50: #e8f6ea,
+  100: #c5e9cb,
+  200: #9fdaa9,
+  300: #79cb86,
+  400: #5cc06c,
+  500: #3fb552,
+  600: #39ae4b,
+  700: #31a541,
+  800: #299d38,
+  900: #1b8d28,
+  A100: #c6ffcc,
+  A200: #93ff9e,
+  A400: #60ff70,
+  A700: #47ff58,
+  contrast: (
+    50: $dark-contrast,
+    100: $dark-contrast,
+    200: $dark-contrast,
+    300: $dark-contrast,
+    400: $dark-contrast,
+    500: $dark-contrast,
+    600: $light-contrast,
+    700: $light-contrast,
+    800: $light-contrast,
+    900: $light-contrast,
+    A100: $dark-contrast,
+    A200: $dark-contrast,
+    A400: $dark-contrast,
+    A700: $dark-contrast,
+  ),
+);
+
+$color-grey: (
+  50: #e9e9e9,
+  100: #c9c9c9,
+  200: #a5a5a5,
+  300: #808080,
+  400: #656565,
+  500: #4a4a4a,
+  600: #434343,
+  700: #3a3a3a,
+  800: #323232,
+  900: #222222,
+  contrast: (
+    50: $dark-contrast,
+    100: $dark-contrast,
+    200: $dark-contrast,
+    300: $dark-contrast,
+    400: $light-contrast,
+    500: $light-contrast,
+    600: $light-contrast,
+    700: $light-contrast,
+    800: $light-contrast,
+    900: $light-contrast,
+  ),
+);
+
+$color-warning: (
+  50: #fcf8e4,
+  100: #f9ecbd,
+  200: #f5e091,
+  300: #f0d464,
+  400: #edca43,
+  500: #eac122,
+  600: #e7bb1e,
+  700: #e4b319,
+  800: #e1ab14,
+  900: #db9e0c,
+  A100: #ffffff,
+  A200: #fff1d3,
+  A400: #ffe0a0,
+  A700: #ffd886,
+  contrast: (
+    50: $dark-contrast,
+    100: $dark-contrast,
+    200: $dark-contrast,
+    300: $dark-contrast,
+    400: $dark-contrast,
+    500: $dark-contrast,
+    600: $dark-contrast,
+    700: $dark-contrast,
+    800: $dark-contrast,
+    900: $dark-contrast,
+    A100: $dark-contrast,
+    A200: $dark-contrast,
+    A400: $dark-contrast,
+    A700: $dark-contrast,
+  ),
+);
+$color-success: (
+  50: #e8f6ea,
+  100: #c5e9cb,
+  200: #9fdaa9,
+  300: #79cb86,
+  400: #5cc06c,
+  500: #3fb552,
+  600: #39ae4b,
+  700: #31a541,
+  800: #299d38,
+  900: #1b8d28,
+  A100: #c6ffcc,
+  A200: #93ff9e,
+  A400: #60ff70,
+  A700: #47ff58,
+  contrast: (
+    50: $dark-contrast,
+    100: $dark-contrast,
+    200: $dark-contrast,
+    300: $dark-contrast,
+    400: $dark-contrast,
+    500: $dark-contrast,
+    600: $light-contrast,
+    700: $light-contrast,
+    800: $light-contrast,
+    900: $light-contrast,
+    A100: $dark-contrast,
+    A200: $dark-contrast,
+    A400: $dark-contrast,
+    A700: $dark-contrast,
+  ),
+);
+
+$color-error: (
+  50: #fff9e0,
+  100: #fff0b3,
+  200: #ffe680,
+  300: #ffdb4d,
+  400: #ffd426,
+  500: #ffcc00,
+  600: #ffc700,
+  700: #ffc000,
+  800: #ffb900,
+  900: #ffad00,
+  A100: #ffffff,
+  A200: #fffaf2,
+  A400: #ffe8bf,
+  A700: #ffdfa6,
+  contrast: (
+    50: $dark-contrast,
+    100: $dark-contrast,
+    200: $dark-contrast,
+    300: $dark-contrast,
+    400: $dark-contrast,
+    500: $dark-contrast,
+    600: $dark-contrast,
+    700: $dark-contrast,
+    800: $dark-contrast,
+    900: $dark-contrast,
+    A100: $dark-contrast,
+    A200: $dark-contrast,
+    A400: $dark-contrast,
+    A700: $dark-contrast,
+  ),
+);
+
+//Definging a theme https://material.angular.io/guide/theming#themes
+// Define the default theme.
+$app-primary: mat.define-palette($color-primary, 600);
+$app-accent: mat.define-palette($color-accent, 500, 600);
+$app-error: mat.define-palette(mat.$red-palette, 500);
+
+$app-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $app-primary,
+      accent: $app-accent,
+      warn: $app-error,
+    ),
+  )
+);
+
+// Define a default dark theme.
+$dark-primary: mat.define-palette($color-primary, 300);
+$dark-accent: mat.define-palette($color-accent, 300);
+$dark-error: mat.define-palette(mat.$deep-orange-palette, 900);
+
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $dark-primary,
+      accent: $dark-accent,
+      warn: $dark-error,
+    ),
+  )
+);
+
+@include mat.all-component-themes($app-theme);
+@include theme-color-grabber($app-theme);
+
+// You can also create themes specifically for components and then assign these.
+// @include mat-button-theme($app-secondary-theme);
+
+// `.dark-theme` will be affected by this alternate dark theme instead of the default theme.
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+  @include theme-color-grabber($dark-theme);
+}

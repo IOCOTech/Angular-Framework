@@ -1,0 +1,96 @@
+//  1. Width & Height %
+// .width-##
+//  --------------
+//.width-### or .height-###
+@each $j in $w-and-h-values {
+  @for $i from 0 to 101 {
+    .#{nth($j, 2)}-#{$i} {
+      #{nth($j, 2)}: $i * 1%;
+    }
+  }
+}
+//.min-width-### or .min-height-###
+@each $j in $w-and-h-values {
+  @for $i from 0 to 101 {
+    .min-#{nth($j, 2)}-#{$i} {
+      min-#{nth($j, 2)}: $i * 1%;
+    }
+  }
+}
+//.max-width-### or .max-height-###
+@each $j in $w-and-h-values {
+  @for $i from 0 to 101 {
+    .max-#{nth($j, 2)}-#{$i} {
+      max-#{nth($j, 2)}: $i * 1%;
+    }
+  }
+}
+// Widths on Small screens
+//.width-sm-### or .height-sm-###
+@media (max-width: 959px) {
+  @each $j in $w-and-h-values {
+    @for $i from 0 to 101 {
+      .#{nth($j, 2)}-sm-#{$i} {
+        #{nth($j, 2)}: $i * 1%;
+      }
+    }
+  }
+  //.min-width-sm-### or .min-height-sm-###
+  @each $j in $w-and-h-values {
+    @for $i from 0 to 101 {
+      .min-#{nth($j, 2)}-sm-#{$i} {
+        min-#{nth($j, 2)}: $i * 1%;
+      }
+    }
+  }
+  //.max-width-sm-### or .max-height-sm-###
+  @each $j in $w-and-h-values {
+    @for $i from 0 to 101 {
+      .max-#{nth($j, 2)}-sm-#{$i} {
+        max-#{nth($j, 2)}: $i * 1%;
+      }
+    }
+  }
+}
+// Widths on XSmall screens
+@media (max-width: 599px) {
+  @each $j in $w-and-h-values {
+    @for $i from 0 to 101 {
+      .#{nth($j, 2)}-xs-#{$i} {
+        #{nth($j, 2)}: $i * 1%;
+      }
+    }
+  }
+
+  @each $j in $w-and-h-values {
+    @for $i from 0 to 101 {
+      .min-#{nth($j, 2)}-xs-#{$i} {
+        min-#{nth($j, 2)}: $i * 1%;
+      }
+    }
+  }
+
+  @each $j in $w-and-h-values {
+    @for $i from 0 to 101 {
+      .max-#{nth($j, 2)}-xs-#{$i} {
+        max-#{nth($j, 2)}: $i * 1%;
+      }
+    }
+  }
+}
+
+//  2. Border Radius
+//.border-radius-###
+@each $j in $border-radius-values {
+  .border-radius-#{nth($j, 1)} {
+    border-radius: nth($j, 2);
+  }
+}
+
+//  2. Border width
+//.border-width-###
+@each $j in $border-width-values {
+  .border-width-#{nth($j, 1)} {
+    border-width: nth($j, 2);
+  }
+}

@@ -1,0 +1,327 @@
+/*
+Naming Conventions in Variables
+ The naming of Variables is slightly different to the classes
+ Variables are named according to what they do (e.g. font-size)
+ Each variable had a range of values f0 - f## 
+ f means that the values are preset and are using a factor (em) to calculate the px value you will get
+ you can create new variables in these lists
+ name custom variables with a c (e.g. $font-size-c2)
+ This allows you to slot them in where needed without breaking the number order of the f (See font-size for an example)
+ 
+ Only us px when absolutely neccessary - rather use em % vh vw rem 
+
+*/
+
+// 1. ROOT PX SETTING
+//  ***********************************************
+$root-px: 16px;
+
+// App Colours
+//  ***********************************************
+// Set up variables for light and dark theme
+
+:root {
+  --app-color-primary: map-get($color-primary, 500);
+  --app-color-success: map-get($color-success, 500);
+  --app-color-accent: map-get($color-accent, 500);
+  --app-color-white: map-get($color-grey, 50);
+  --app-color-grey: map-get($color-grey, 500);
+  --app-color-black: map-get($color-grey, 900);
+  --app-color-error: map-get($color-error, 500);
+  --app-color-warning: map-get($color-warning, 500);
+
+  --font-color-primary: map-get($color-grey, 50);
+  --font-color-accent: map-get($color-grey, 50);
+  --font-color-white: map-get($color-primary, 500);
+  --font-color-grey: map-get($color-grey, 50);
+  --font-color-black: map-get($color-grey, 50);
+  --font-color-error: map-get($color-grey, 50);
+  --font-color-warning: map-get($color-grey, 900);
+  --font-color-success: map-get($color-grey, 50);
+}
+
+[class='dark-theme'] {
+  --app-color-primary: map-get($color-primary, 300);
+  --app-color-success: map-get($color-success, 300);
+  --app-color-accent: map-get($color-accent, 300);
+  --app-color-white: map-get($color-grey, 800);
+  --app-color-grey: map-get($color-grey, 300);
+  --app-color-black: map-get($color-grey, 50);
+  --app-color-error: map-get($color-error, 300);
+  --app-color-warning: map-get($color-warning, 300);
+
+  --font-color-primary: map-get($color-grey, 50);
+  --font-color-accent: map-get($color-grey, 50);
+  --font-color-white: map-get($color-primary, 500);
+  --font-color-grey: map-get($color-grey, 900);
+  --font-color-black: map-get($color-grey, 900);
+  --font-color-error: map-get($color-grey, 900);
+  --font-color-warning: map-get($color-grey, 900);
+  --font-color-success: map-get($color-grey, 90);
+}
+
+//  2.1 Text Family
+$font-family-light: 'Open Sans', sans-serif;
+$font-family-regular: 'Open Sans', sans-serif;
+$font-family-medium: 'Open Sans', sans-serif;
+$font-family-bold: 'Open Sans', sans-serif;
+
+//  2.2 Text Size
+$font-size-f0: 0em;
+$font-size-f1: 0.5em;
+$font-size-f2: 0.75em;
+$font-size-c2: 0.85em;
+$font-size-f3: 0.9375em;
+$font-size-f4: 1em;
+$font-size-f5: 1.125em;
+$font-size-f6: 1.5em;
+$font-size-f7: 1.75em;
+$font-size-f8: 2em;
+$font-size-f9: 2.125em;
+$font-size-f10: 2.5em;
+$font-size-f11: 2.75em;
+$font-size-f12: 3em;
+$font-size-f13: 3.25em;
+$font-size-f14: 3.5em;
+$font-size-f15: 4em;
+
+$font-size-values: (
+  0: $font-size-f0,
+  1: $font-size-f1,
+  2: $font-size-f2,
+  3: $font-size-f3,
+  4: $font-size-f4,
+  5: $font-size-f5,
+  6: $font-size-f6,
+  7: $font-size-f7,
+  8: $font-size-f8,
+  9: $font-size-f9,
+  10: $font-size-f10,
+  11: $font-size-f11,
+  12: $font-size-f12,
+  13: $font-size-f13,
+  14: $font-size-f14,
+  15: $font-size-f15,
+);
+
+//  2.3 Text Line Height
+
+$font-line-height-f0: 0em;
+$font-line-height-f1: 0.5em;
+$font-line-height-f2: 0.75em;
+$font-line-height-f3: 0.9375em;
+$font-line-height-f4: 1em;
+$font-line-height-f5: 1.125em;
+$font-line-height-f6: 1.5em;
+$font-line-height-f7: 1.75em;
+$font-line-height-f8: 2em;
+$font-line-height-f9: 2.125em;
+$font-line-height-f10: 2.5em;
+$font-line-height-f11: 2.75em;
+$font-line-height-f12: 3em;
+$font-line-height-f13: 3.25em;
+$font-line-height-f14: 3.5em;
+$font-line-height-f15: 4em;
+
+$font-line-height-values: (
+  0: $font-line-height-f0,
+  1: $font-line-height-f1,
+  2: $font-line-height-f2,
+  3: $font-line-height-f3,
+  4: $font-line-height-f4,
+  5: $font-line-height-f5,
+  6: $font-line-height-f6,
+  7: $font-line-height-f7,
+  8: $font-line-height-f8,
+  9: $font-line-height-f9,
+  10: $font-line-height-f10,
+  11: $font-line-height-f11,
+  12: $font-line-height-f12,
+  13: $font-line-height-f13,
+  14: $font-line-height-f14,
+  15: $font-line-height-f15,
+);
+
+//  2.4 Text Weight
+$font-weight-f0: normal;
+$font-weight-f1: 100;
+$font-weight-f2: 200;
+$font-weight-f3: 300;
+$font-weight-f4: 400;
+$font-weight-f5: 500;
+$font-weight-f6: 600;
+$font-weight-f7: 700;
+$font-weight-f8: 800;
+$font-weight-f9: 900;
+
+$font-weight-values: (
+  0: $font-weight-f0,
+  1: $font-weight-f1,
+  2: $font-weight-f2,
+  3: $font-weight-f3,
+  4: $font-weight-f4,
+  5: $font-weight-f5,
+  6: $font-weight-f6,
+  7: $font-weight-f7,
+  8: $font-weight-f8,
+  9: $font-weight-f9,
+);
+
+//  4. Icons
+//  -----------------------------------------------
+
+$icon-size-f0: 0em;
+$icon-size-f1: 0.5em;
+$icon-size-f2: 0.75em;
+$icon-size-f3: 0.9375em;
+$icon-size-f4: 1em;
+$icon-size-f5: 1.125em;
+$icon-size-f6: 1.5em;
+$icon-size-f7: 1.75em;
+$icon-size-f8: 2em;
+$icon-size-f9: 2.125em;
+$icon-size-f10: 2.5em;
+$icon-size-f11: 2.75em;
+$icon-size-f12: 3em;
+$icon-size-f13: 3.25em;
+$icon-size-f14: 3.5em;
+$icon-size-f15: 4em;
+
+$icon-size-values: (
+  0: $icon-size-f0,
+  1: $icon-size-f1,
+  2: $icon-size-f2,
+  3: $icon-size-f3,
+  4: $icon-size-f4,
+  5: $icon-size-f5,
+  6: $icon-size-f6,
+  7: $icon-size-f7,
+  8: $icon-size-f8,
+  9: $icon-size-f9,
+  10: $icon-size-f10,
+  11: $icon-size-f11,
+  12: $icon-size-f12,
+  13: $icon-size-f13,
+  14: $icon-size-f14,
+  15: $icon-size-f15,
+);
+
+//  3. Borders
+//  -----------------------------------------------
+
+//  3.1 Border width
+$border-width-f0: 0px;
+$border-width-f1: 0.1px;
+$border-width-f2: 0.25px;
+$border-width-f3: 0.5px;
+$border-width-f4: 0.75px;
+$border-width-f5: 1px;
+$border-width-f6: 1.25px;
+$border-width-f7: 1.5px;
+$border-width-f8: 1.75px;
+$border-width-f9: 2px;
+$border-width-f10: 3px;
+$border-width-f11: 4px;
+$border-width-f12: 5px;
+$border-width-f13: 6px;
+$border-width-f14: 8px;
+$border-width-f15: 10px;
+
+$border-width-values: (
+  0: $border-width-f0,
+  1: $border-width-f1,
+  2: $border-width-f2,
+  3: $border-width-f3,
+  4: $border-width-f4,
+  5: $border-width-f5,
+  6: $border-width-f6,
+  7: $border-width-f7,
+  8: $border-width-f8,
+  9: $border-width-f9,
+  10: $border-width-f10,
+  11: $border-width-f11,
+  12: $border-width-f12,
+  13: $border-width-f13,
+  14: $border-width-f14,
+  15: $border-width-f15,
+);
+
+//  3.2 Border Radius
+$border-radius-f0: 0rem;
+$border-radius-f1: 0.1rem;
+$border-radius-f2: 0.2rem;
+$border-radius-f3: 0.5rem;
+$border-radius-f4: 0.8rem;
+$border-radius-f5: 1rem;
+$border-radius-f6: 1.5rem;
+$border-radius-f7: 2rem;
+$border-radius-f8: 2.5rem;
+$border-radius-f9: 3rem;
+$border-radius-f10: 3.5rem;
+$border-radius-f11: 4em;
+$border-radius-f12: 4.5rem;
+$border-radius-f13: 5rem;
+$border-radius-f14: 5.5rem;
+$border-radius-f15: 6rem;
+
+$border-radius-values: (
+  0: $border-radius-f0,
+  1: $border-radius-f1,
+  2: $border-radius-f2,
+  3: $border-radius-f3,
+  4: $border-radius-f4,
+  5: $border-radius-f5,
+  6: $border-radius-f6,
+  7: $border-radius-f7,
+  8: $border-radius-f8,
+  9: $border-radius-f9,
+  10: $border-radius-f10,
+  11: $border-radius-f11,
+  12: $border-radius-f12,
+  13: $border-radius-f13,
+  14: $border-radius-f14,
+  15: $border-radius-f15,
+);
+
+//  5. Spacing
+//  -----------------------------------------------
+//  5.1 Spacing
+
+$spacing-f0: 0rem;
+$spacing-f1: 0.25rem;
+$spacing-f2: 0.5rem;
+$spacing-f3: 0.75em;
+$spacing-f4: 1rem;
+$spacing-f5: 1.25rem;
+$spacing-f6: 1.5em;
+$spacing-f7: 1.75rem;
+$spacing-f8: 2rem;
+$spacing-f9: 2.25rem;
+$spacing-f10: 2.5rem;
+$spacing-f11: 2.75em;
+$spacing-f12: 3rem;
+$spacing-f13: 3.25rem;
+$spacing-f14: 3.5rem;
+$spacing-f15: 4rem;
+
+$spacing-values: (
+  0: $spacing-f0,
+  1: $spacing-f1,
+  2: $spacing-f2,
+  3: $spacing-f3,
+  4: $spacing-f4,
+  5: $spacing-f5,
+  6: $spacing-f6,
+  7: $spacing-f7,
+  8: $spacing-f8,
+  9: $spacing-f9,
+  10: $spacing-f10,
+  11: $spacing-f11,
+  12: $spacing-f12,
+  13: $spacing-f13,
+  14: $spacing-f14,
+  15: $spacing-f15,
+);
+$side-values: top top, right right, bottom bottom, left left;
+
+$w-and-h-values: width width, height height;

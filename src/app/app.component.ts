@@ -35,7 +35,7 @@ export class AppComponent {
         // Added timeout because snackbar has a bug that gives a error if displayed on Init of component
         setTimeout(() => {
             this.snackbarRef = this.snackBar.openFromComponent(
-                snackbarDetails.factory.componentType
+                snackbarDetails.componentRef
                 , {
                     panelClass: ['custom-snackbar']
                 });

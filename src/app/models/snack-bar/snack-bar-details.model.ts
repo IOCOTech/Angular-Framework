@@ -1,11 +1,11 @@
-import {  ComponentFactory } from '@angular/core';
+import { ComponentType } from '@angular/cdk/portal';
 
 export class ModelSnackBarDetails {
-    factory: ComponentFactory<any>;
-    callbackOnAction: (() => void) | undefined;
+    componentRef: ComponentType<any>;
+    callbackOnAction: ((response?: any) => void) | undefined;
 
-    constructor(factory: ComponentFactory<any>, callbackOnAction?: () => void) {
-        this.factory = factory;
+    constructor(componentRef: ComponentType<any>, callbackOnAction?: (response?: any) => void) {
+        this.componentRef = componentRef;
         this.callbackOnAction = callbackOnAction;
     }
 }

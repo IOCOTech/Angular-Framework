@@ -1,5 +1,5 @@
-import { EventEmitter, ComponentFactory, Injectable } from '@angular/core';
-import * as Enums from 'src/app/enums/enums';
+import { ComponentType } from '@angular/cdk/portal';
+import { EventEmitter, Injectable } from '@angular/core';
 import { ModelSnackBarDetails } from 'src/app/models/snack-bar/snack-bar-details.model';
 
 @Injectable({
@@ -7,16 +7,19 @@ import { ModelSnackBarDetails } from 'src/app/models/snack-bar/snack-bar-details
 })
 export class ServiceSnackBar {
 
-    public onSnackbar: EventEmitter<ModelSnackBarDetails> = new EventEmitter<ModelSnackBarDetails>();
-    public onDismissSnackbar = new EventEmitter();
+    onSnackbar: EventEmitter<ModelSnackBarDetails> = new EventEmitter<ModelSnackBarDetails>();
+    onDismissSnackbar = new EventEmitter();
+    private callbackOnAction: ((response?: any) => void) | undefined;
 
-    showSnackbar(factory: ComponentFactory<any>, callbackFunction?: () => void): void {
-        const details = new ModelSnackBarDetails(factory, callbackFunction);
+    showSnackbar(componentToShow: ComponentType<any>, callbackFunction?: (response?: any) => void): void {
+        const details = new ModelSnackBarDetails(componentToShow, callbackFunction);
         this.onSnackbar.emit(details);
     }
 
-    dismissSnackBar(): void {
+    dismissSnackBar(response?: any): void {
+        if (this.callbackOnAction){
+            this.callbackOnAction(response);
+        }
         this.onDismissSnackbar.emit();
     }
-
 }

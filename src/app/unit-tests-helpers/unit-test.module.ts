@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AbstractEndpoints } from 'src/environments/endpoints/endpoints.abstract';
 import { MaterialDesignModule } from '../modules/material-design/material-design.module';
-import { AbstractServiceAuthentication } from '../services/authentication.service/authentication.service.abstract';
-import { ServiceConfig } from '../services/config.service/config.service';
-import { ServiceErrorHandler } from '../services/error-handler.service/error-handler.service';
-import { ServiceMonitoring } from '../services/monitor.service/monitor.service';
-import { AbstractServiceUser } from '../services/users.service/user.service.abstract';
-import './../helpers/navigation-helper';
+import { AbstractServiceAuthentication } from '../services/authentication/authentication.service.abstract';
+import { ServiceConfig } from '../services/config/config.service';
+import { ServiceErrorHandler } from '../services/error-handler/error-handler.service';
+import { ServiceMonitoring } from '../services/monitor/monitor.service';
+import { AbstractServiceUser } from '../services/user/user.service.abstract';
+import '../helpers/router.extension.helper';
 import { UnitTestHelpers } from './unit-test.helper';
 
 

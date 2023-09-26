@@ -1,0 +1,7 @@
+<div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="15px">
+    <p>This organization would like to show you notifications. Are you interested?</p>
+    <div fxLayout="row" fxLayoutGap="15px">
+        <button mat-button (click)="respond(false)">No thanks</button>
+        <button mat-raised-button color="primary" (click)="respond(true)">Yes please</button>
+    </div>
+</div>

@@ -1,20 +1,13 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": "072924e6-607a-4f79-9caa-54ced81f6f7c",
-    "defaultCollection": "@angular-eslint/schematics"
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ioco-angular-framework": {
+    "Angular-Framework": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
-        },
-        "@schematics/angular:application": {
-          "strict": true
         }
       },
       "root": "",
@@ -24,133 +17,97 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ioco-angular-framework",
+            "outputPath": "dist/angular-framework",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/config.json",
+              "src/web.config"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
-              "assets": [
-                "src/assets",
-                "src/config.json",
-                "src/web.config",
-                "src/favicon.ico"
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
-              ]
+              ],
+              "outputHashing": "all"
             },
             "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
               "assets": [
                 {
                   "input": "src/environments/config/dev",
                   "output": "/",
                   "glob": "config.json"
-                },
-                "src/assets"
+                }
               ],
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true,
               "fileReplacements": [
                 {
                   "replace": "src/environments/app-settings/app-settings.ts",
                   "with": "src/environments/app-settings/app-settings.dev.ts"
                 }
-              ],
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "10mb",
-                  "maximumError": "10mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
               ]
             },
             "mock": {
-              "assets": [
-                {
-                  "input": "src/environments/config/mock",
-                  "output": "/",
-                  "glob": "config.json"
-                },
-                "src/assets",
-                "src/favicon.ico"
-              ],
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
+              "assets": [
+                {
+                  "input": "src/environments/config/mock",
+                  "output": "/",
+                  "glob": "config.json"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src/environments/app-settings/app-settings.ts",
                   "with": "src/environments/app-settings/app-settings.mock.ts"
                 }
-              ],
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "10mb",
-                  "maximumError": "10mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
-                }
               ]
             }
           },
-          "defaultConfiguration": "production",
-          "assets": null
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ioco-angular-framework:build:production"
+              "browserTarget": "Angular-Framework:build:production"
             },
             "development": {
-              "browserTarget": "ioco-angular-framework:build:development"
+              "browserTarget": "Angular-Framework:build:development"
             },
             "mock": {
-              "browserTarget": "ioco-angular-framework:build:mock"
+              "browserTarget": "Angular-Framework:build:mock"
             }
           },
           "defaultConfiguration": "development"
@@ -158,14 +115,16 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ioco-angular-framework:build"
+            "browserTarget": "Angular-Framework:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
@@ -174,7 +133,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -192,5 +150,10 @@
       }
     }
   },
-  "defaultProject": "ioco-angular-framework"
+  "cli": {
+    "analytics": "b35e6c7e-313b-44bd-b645-815935b23fd5",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  }
 }

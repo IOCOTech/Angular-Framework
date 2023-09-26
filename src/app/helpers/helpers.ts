@@ -2,12 +2,12 @@ export class Helpers {
 
     static guid = class {
         public static generateGuid(): string {
-            const valueGenerator = (s?: boolean) => {
-                const p = (Math.random().toString(16) + '000000000').substr(2, 8);
-                return s ? '-' + p.substr(0, 4) + '-' + p.substr(4, 4) : p;
-            };
-            return valueGenerator() + valueGenerator(true) + valueGenerator(true) + valueGenerator();
-        }
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+              const r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
+              return v.toString(16);
+            });
+          }
     };
 
     static color = class {

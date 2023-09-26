@@ -1,6 +1,7 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { DevErrorHandler } from 'dev-error-reporter';
-import { environment } from '../../environments/environment';
+import { AppSettings } from '../../environments/app-settings/app-settings';
+import { Enums } from 'src/app/enums/enums';
 
 @Injectable({ providedIn: 'root' })
 export class ConsoleErrorHandler extends ErrorHandler {
@@ -9,8 +10,8 @@ export class ConsoleErrorHandler extends ErrorHandler {
         appendToElement: 'app-root', // <-- App root as defined in index.html
     });
 
-    handleError(error: any): void {
-        if (!environment.production) {
+    override handleError(error: any): void {
+        if (AppSettings.environment != Enums.Environments.Production) {
             // <-- Managed in your own code, should never show in prod
             this.errorReporter.showError(error);
         }

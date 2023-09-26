@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ServiceLoadingScreen } from 'src/app/services/loading-screen.service/loading-screen.service';
+import { ServiceLoadingScreen } from 'src/app/services/loading-screen/loading-screen.service';
 import { debounceTime } from 'rxjs/operators';
 
 @Component({
@@ -17,7 +17,9 @@ export class LoadingScreenComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadingSubscription = this.loadingScreenService.loadingStatus.pipe(debounceTime(200)).subscribe((value) => {
+    this.loadingSubscription = this.loadingScreenService.loadingStatus
+      .pipe(debounceTime(200))
+      .subscribe((value: boolean) => {
       this.loading = value;
     });
   }
@@ -25,5 +27,4 @@ export class LoadingScreenComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.loadingSubscription.unsubscribe();
   }
-
 }

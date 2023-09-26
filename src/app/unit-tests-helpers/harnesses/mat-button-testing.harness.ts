@@ -1,6 +1,6 @@
 import { HarnessPredicate, LocatorFactory } from '@angular/cdk/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
-import { IdHarnessFilters } from './id-harness.filter';
+import { IdHarnessFilters } from './id-harness.filter.ts.template';
 
 
 export class MatButtonTestingHarness extends MatButtonHarness {

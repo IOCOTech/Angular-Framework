@@ -6,8 +6,8 @@ import { Enums } from './app/enums/enums';
 import { AppSettings } from './environments/app-settings/app-settings';
 
 if (AppSettings.environment === Enums.Environments.Production) {
-    enableProdMode();
+  enableProdMode();
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch(err => console.error(err));
+  .catch(err => console.error(err));

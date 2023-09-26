@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package*.json /app/
 RUN npm install
 # Install specific angular version, if the app updates this must be updated as well
-RUN npm install -g @angular/cli@13.3.3
+RUN npm install -g @angular/cli
 COPY ./ /app/
 # Run unit tests
 RUN ng test --code-coverage --browsers ChromeHeadlessNoSandbox --watch=false; exit 0
@@ -18,7 +18,6 @@ RUN ng test --code-coverage --browsers ChromeHeadlessNoSandbox --watch=false; ex
 ARG configuration=production
 # Build the angular application
 RUN ng build --output-path=./dist --configuration $configuration
-
 
 # Use official nginx image as the base image
 FROM nginx:1.19.6-alpine

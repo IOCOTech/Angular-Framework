@@ -1,87 +1,27 @@
-# IOCO Angular Framework
+# AngularFramework
 
-## Docker Dev Container
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.0.
 
-This project is configured to run in a Dev Container. No need to install any packages, just open project in remote container using VS Code.
-The container will be created, packages installed and extensions loaded in VS Code.
+## Development server
 
-Disable WSL 2 in docker for faster performance \
-In Docker under settings --> resources --> File Sharing add the root folder of the application
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-To run project, open a terminal and run:
-```
-npm start
-```
+## Code scaffolding
 
-Follow the instruction below if you choose not use the Docker Dev Container.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Docker Instructions
+## Build
 
-To build and run the docker files use the following commands
-- docker build -t diesel-rebate:test -f dockerfile.test .
-- docker run -d -it -p 80:8080 --name=diesel-rebate {{Image ID}}
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-Open interactive terminal
-- docker exec -it diesel-rebate bash
+## Running unit tests
 
-## To Run
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-- Clone Repo
-- npm install
-- npm start
+## Running end-to-end tests
 
-## Dev Standards
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-- All component properties / methods are **private if not bound to HTML**
-- All Private Methods at the bottom
-- Public Methods do not have public prefix.
+## Further help
 
-```diff
-- public addUser(user){ ... }
-+ addUser(user){ ... }
-```
-
-- Unused Services have been removed from Component Constructor
-- No Services are public
-- All Service subscriptions are unsubscribed onDestroy
-- Using full names for variables and not, `a = x` or `usr = result.user`
-- Link work item for tracking if possible
-  - Tip - add #{TaskNumber} to commit message to link for item ie: `Resolves #123 Added blah blah` or `#123 #321 #111`
-- Order of code
-  - Private Properties
-  - Constructor
-  - Inputs / Outputs
-  - Public Properties
-  - LifeCycle hooks
-  - Public Methods
-  - Private Methods
-
-### example:
-
-```TS
-export class Demo implements OnInit,OnDestroy {
-  private subscriptions = new Subscription();
-  private userId: string;
-
-  constructor(private someService: SomeService) { ... }
-
-  @Input() test: string;
-  @Output() select = ...;
-
-  availableList = [ ... ];
-
-  ngOnInit(): void {
-    this.subscriptions.add(this.someService.doServiceCall().subscribe());
-  }
-
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
-
-  userSelected() {
-    ...
-  }
-
-  private doSomething(){ ... }
-}
-```
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

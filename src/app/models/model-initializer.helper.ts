@@ -1,7 +1,6 @@
 import { Enums } from '../enums/enums';
 import { MaterialIcons } from '../enums/separated-enums/material-icons.enum';
-import { ModelErrorDialogConfig } from './dialog-data/error-dialog-config.model';
-import { ModelUser } from './users/user-details.model';
+import * as Models from 'src/app/models/models';
 
 export class ModelInitializer {
 
@@ -9,7 +8,7 @@ export class ModelInitializer {
         static ErrorDialogConfig = (
             errorMessage: string, header: string = 'Error',
             icon: MaterialIcons = Enums.MaterialIcons.Error,
-            displayReportIssueButton: boolean = false): ModelErrorDialogConfig => {
+            displayReportIssueButton: boolean = false): Models.ErrorDialogConfig => {
             return {
                 errorMessage
                 , header
@@ -19,7 +18,7 @@ export class ModelInitializer {
         }
     };
 
-    static User = (data?: Partial<ModelUser>): ModelUser => {
+    static User = (data?: Partial<Models.User>): Models.User => {
         return {
             id: !!data ? (data?.id ?? '') : ''
             , name: !!data ? (data?.name ?? '') : '',

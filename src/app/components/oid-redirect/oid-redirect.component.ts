@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceMonitoring } from 'src/app/services/monitor.service/monitor.service';
+import { ServiceMonitoring } from 'src/app/services/monitor/monitor.service';
 
 @Component({
     selector: 'app-oid-redirect',
@@ -8,10 +8,10 @@ import { ServiceMonitoring } from 'src/app/services/monitor.service/monitor.serv
 })
 export class OidRedirectComponent implements OnInit {
 
-    constructor(private serviceMonitoring: ServiceMonitoring) { }
+    constructor(private serviceMonitoring: ServiceMonitoring) {
+    }
 
     ngOnInit(): void {
         this.serviceMonitoring.logEvent(this, 'OIDRedirect component loaded');
     }
-
 }

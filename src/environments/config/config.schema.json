@@ -1,0 +1,103 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "IAuthenticationConfig": {
+            "properties": {
+                "authority": {
+                    "type": "string"
+                },
+                "clientId": {
+                    "type": "string"
+                },
+                "navigateToLoginRequestUrl": {
+                    "type": "boolean"
+                },
+                "postLogoutRedirectUri": {
+                    "type": "string"
+                },
+                "redirectUri": {
+                    "type": "string"
+                },
+                "validateAuthority": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "authority",
+                "clientId",
+                "navigateToLoginRequestUrl",
+                "postLogoutRedirectUri",
+                "redirectUri",
+                "validateAuthority"
+            ],
+            "type": "object"
+        },
+        "ILogging": {
+            "properties": {
+                "errorLogTo": {
+                    "default": "error",
+                    "description": "Severity of error levels that should be logged:",
+                    "examples": [
+                        "console",
+                        "appInsights"
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "loggingLevel": {
+                    "anyOf": [
+                        {
+                            "enum": [
+                                1,
+                                2,
+                                3,
+                                4
+                            ],
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "default": "error",
+                    "description": "Severity of error levels that should be logged:",
+                    "examples": [
+                        "info",
+                        "warning",
+                        "error",
+                        "critical"
+                    ]
+                }
+            },
+            "required": [
+                "errorLogTo",
+                "loggingLevel"
+            ],
+            "type": "object"
+        }
+    },
+    "properties": {
+        "apiBaseURL": {
+            "type": "string"
+        },
+        "appInsightsKey": {
+            "type": "string"
+        },
+        "authentication": {
+            "$ref": "#/definitions/IAuthenticationConfig"
+        },
+        "logging": {
+            "$ref": "#/definitions/ILogging"
+        }
+    },
+    "required": [
+        "apiBaseURL",
+        "appInsightsKey",
+        "authentication",
+        "logging"
+    ],
+    "type": "object"
+}
+

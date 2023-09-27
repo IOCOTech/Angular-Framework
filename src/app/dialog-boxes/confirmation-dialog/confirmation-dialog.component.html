@@ -1,8 +1,13 @@
+<div class="icon-container margin-top-15" fxFill fxLayout="row" fxLayoutAlign="center start">
+    <mat-icon [ngStyle]="{'color': iconColor}">
+        {{icon}}
+    </mat-icon>
+</div>
 <h1 mat-dialog-title>{{header}}</h1>
 <div mat-dialog-content>
     {{message}}
 </div>
-<div mat-dialog-actions align="end">
-    <button mat-raised-button mat-dialog-close="false">Cancel</button>
-    <button mat-raised-button mat-dialog-close="true">Ok</button>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="15px">
+    <button class="cancel-button" *ngIf="displayCancelButton" mat-flat-button mat-dialog-close="false">Cancel</button>
+    <button class="action-button" mat-flat-button mat-dialog-close="true">{{okButtonText}}</button>
 </div>

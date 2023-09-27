@@ -1,5 +1,6 @@
 export enum MaterialIcons {
-    Error = 'error'
-    , Info = 'info'
-    , Warning = 'warning'
+    Error = 'error',
+    CheckCircle = 'check_circle',
+    Info = 'info',
+    Warning = 'warning'
 }

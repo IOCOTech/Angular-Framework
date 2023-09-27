@@ -2,7 +2,8 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { ServiceLoadingScreen } from '../services/loading-screen.service/loading-screen.service';
+import { ServiceConfig } from '../services/config/config.service';
+import { ServiceLoadingScreen } from '../services/loading-screen/loading-screen.service';
 
 
 @Injectable()
@@ -13,11 +14,10 @@ export class InterceptorLoadingScreen implements HttpInterceptor {
     /**
      * URLs for which the loading screen should not be enabled
      */
-    skipUrls = [
-        '/authrefresh',
-    ];
+    skipUrls: string[] = [];
 
-    constructor(private loadingScreenService: ServiceLoadingScreen) {
+    constructor(private loadingScreenService: ServiceLoadingScreen, private serviceConfig: ServiceConfig) {
+        // this.skipUrls.push('url that should be skipped')
     }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

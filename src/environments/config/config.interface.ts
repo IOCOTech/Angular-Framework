@@ -1,35 +1,18 @@
-
-import { Enums } from 'src/app/enums/enums';
-import { ErrorSeverityLevel } from 'src/app/enums/separated-enums/error-severity-level.enum';
-
-export function InitializeConfig(): IConfig {
-    const config: IConfig = {
-        apiBaseURL: '',
-        appInsightsKey: '',
-        authentication: {
-            clientId: '',
-            authority: '',
-            validateAuthority: false,
-            redirectUri: '',
-            postLogoutRedirectUri: '',
-            navigateToLoginRequestUrl: false
-        },
-        logging: {
-            errorLogTo: ['console', 'appInsights'],
-            loggingLevel: Enums.ErrorSeverityLevel.Error
-        }
-    };
-    return config;
+// DON'T REMOVE OR SWAP FOR THE ENUMS IN THE ENUMS FOLDER IT BREAKS THE SCHEMA GENERATOR
+enum ErrorSeverityLevel {
+    Info = 1,
+    Warning = 2,
+    Error = 3,
+    Critical = 4
 }
 
-export interface IConfig {
-    apiBaseURL: string;
-    appInsightsKey: string;
-    authentication: IAuthenticationConfig;
-    logging: ILogging;
+export abstract class IConfig {
+    apiBaseURL!: string;
+    appInsightsKey!: string;
+    authentication!: IAuthenticationConfig;
+    logging!: ILogging;
 }
-
-export interface IAuthenticationConfig {
+interface IAuthenticationConfig {
     clientId: string;
     authority: string;
     validateAuthority: boolean;
@@ -38,7 +21,23 @@ export interface IAuthenticationConfig {
     navigateToLoginRequestUrl: boolean;
 }
 
-export interface ILogging {
+interface IAzureStorageConfig {
+    baseContainerName: string;
+    storageURL: string;
+    viewFilename: string;
+}
+
+interface ILogging {
+    /**
+     * Severity of error levels that should be logged:
+     * @default "error"
+     * @examples [ "console", "appInsights" ]
+     */
     errorLogTo: string[];
+    /**
+     * Severity of error levels that should be logged:
+     * @default "error"
+     * @examples [ "info", "warning", "error", "critical" ]
+     */
     loggingLevel: ErrorSeverityLevel | string;
 }

@@ -1,209 +1,103 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://example.com/example.json",
-  "type": "object",
-  "title": "The root schema",
-  "description": "The root schema comprises the entire JSON document.",
-  "default": {},
-  "examples": [
-    {
-      "apiBaseURL": "https://localhost:44386",
-      "appInsightsKey": "211f0722-a9f3-4c1c-b45f-123206a0dfbe",
-      "authentication": {
-        "clientId": "714270ac-cd7a-41eb-a4f6-583e6c850bf2",
-        "authority": "https://{{app-name}}.b2clogin.com/{{tenantId}}/B2C_1A_signin",
-        "validateAuthority": false,
-        "redirectUri": "http://localhost:4200/oid-redirect",
-        "postLogoutRedirectUri": "http://localhost:4200",
-        "navigateToLoginRequestUrl": true
-      },
-      "logging": {
-        "errorLogTo": [
-          "console",
-          "appInsights"
-        ],
-        "loggingLevel": "info"
-      }
-    }
-  ],
-  "required": [
-    "apiBaseURL",
-    "appInsightsKey",
-    "authentication",
-    "logging"
-  ],
-  "additionalProperties": true,
-  "properties": {
-    "apiBaseURL": {
-      "$id": "#/properties/apiBaseURL",
-      "type": "string",
-      "title": "The apiBaseURL schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "https://localhost:44386"
-      ]
-    },
-    "appInsightsKey": {
-      "$id": "#/properties/appInsightsKey",
-      "type": "string",
-      "title": "The appInsightsKey schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": "",
-      "examples": [
-        "211f0722-a9f3-4c1c-b45f-123206a0dfbe"
-      ]
-    },
-    "authentication": {
-      "$id": "#/properties/authentication",
-      "type": "object",
-      "title": "The authentication schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": {},
-      "examples": [
-        {
-          "clientId": "714270ac-cd7a-41eb-a4f6-583e6c850bf2",
-          "authority": "https://{{app-name}}.b2clogin.com/{{tenantId}}/B2C_1A_signin",
-          "validateAuthority": false,
-          "redirectUri": "http://localhost:4200/oid-redirect",
-          "postLogoutRedirectUri": "http://localhost:4200",
-          "navigateToLoginRequestUrl": true
-        }
-      ],
-      "required": [
-        "clientId",
-        "authority",
-        "validateAuthority",
-        "redirectUri",
-        "postLogoutRedirectUri",
-        "navigateToLoginRequestUrl"
-      ],
-      "additionalProperties": true,
-      "properties": {
-        "clientId": {
-          "$id": "#/properties/authentication/properties/clientId",
-          "type": "string",
-          "title": "The clientId schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-            "714270ac-cd7a-41eb-a4f6-583e6c850bf2"
-          ]
-        },
-        "authority": {
-          "$id": "#/properties/authentication/properties/authority",
-          "type": "string",
-          "title": "The authority schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-            "https://{{app-name}}.b2clogin.com/{{tenantId}}/B2C_1A_signin"
-          ]
-        },
-        "validateAuthority": {
-          "$id": "#/properties/authentication/properties/validateAuthority",
-          "type": "boolean",
-          "title": "The validateAuthority schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": false,
-          "examples": [
-            false
-          ]
-        },
-        "redirectUri": {
-          "$id": "#/properties/authentication/properties/redirectUri",
-          "type": "string",
-          "title": "The redirectUri schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-            "http://localhost:4200/oid-redirect"
-          ]
-        },
-        "postLogoutRedirectUri": {
-          "$id": "#/properties/authentication/properties/postLogoutRedirectUri",
-          "type": "string",
-          "title": "The postLogoutRedirectUri schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-            "http://localhost:4200"
-          ]
-        },
-        "navigateToLoginRequestUrl": {
-          "$id": "#/properties/authentication/properties/navigateToLoginRequestUrl",
-          "type": "boolean",
-          "title": "The navigateToLoginRequestUrl schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": false,
-          "examples": [
-            true
-          ]
-        }
-      }
-    },
-    "logging": {
-      "$id": "#/properties/logging",
-      "type": "object",
-      "title": "The logging schema",
-      "description": "An explanation about the purpose of this instance.",
-      "default": {},
-      "examples": [
-        {
-          "errorLogTo": [
-            "console",
-            "appInsights"
-          ],
-          "loggingLevel": "info"
-        }
-      ],
-      "required": [
-        "errorLogTo",
-        "loggingLevel"
-      ],
-      "additionalProperties": true,
-      "properties": {
-        "errorLogTo": {
-          "$id": "#/properties/logging/properties/errorLogTo",
-          "type": "array",
-          "title": "The errorLogTo schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": [],
-          "examples": [
-            [
-              "console",
-              "appInsights"
-            ]
-          ],
-          "additionalItems": true,
-          "items": {
-            "anyOf": [
-              {
-                "$id": "#/properties/logging/properties/errorLogTo/items/anyOf/0",
-                "type": "string",
-                "title": "The first anyOf schema",
-                "description": "An explanation about the purpose of this instance.",
-                "default": "",
-                "examples": [
-                  "console",
-                  "appInsights"
-                ]
-              }
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "IAuthenticationConfig": {
+            "properties": {
+                "authority": {
+                    "type": "string"
+                },
+                "clientId": {
+                    "type": "string"
+                },
+                "navigateToLoginRequestUrl": {
+                    "type": "boolean"
+                },
+                "postLogoutRedirectUri": {
+                    "type": "string"
+                },
+                "redirectUri": {
+                    "type": "string"
+                },
+                "validateAuthority": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "authority",
+                "clientId",
+                "navigateToLoginRequestUrl",
+                "postLogoutRedirectUri",
+                "redirectUri",
+                "validateAuthority"
             ],
-            "$id": "#/properties/logging/properties/errorLogTo/items"
-          }
+            "type": "object"
         },
-        "loggingLevel": {
-          "$id": "#/properties/logging/properties/loggingLevel",
-          "type": "string",
-          "title": "The loggingLevel schema",
-          "description": "An explanation about the purpose of this instance.",
-          "default": "",
-          "examples": [
-            "info"
-          ]
+        "ILogging": {
+            "properties": {
+                "errorLogTo": {
+                    "default": "error",
+                    "description": "Severity of error levels that should be logged:",
+                    "examples": [
+                        "console",
+                        "appInsights"
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "loggingLevel": {
+                    "anyOf": [
+                        {
+                            "enum": [
+                                1,
+                                2,
+                                3,
+                                4
+                            ],
+                            "type": "number"
+                        },
+                        {
+                            "type": "string"
+                        }
+                    ],
+                    "default": "error",
+                    "description": "Severity of error levels that should be logged:",
+                    "examples": [
+                        "info",
+                        "warning",
+                        "error",
+                        "critical"
+                    ]
+                }
+            },
+            "required": [
+                "errorLogTo",
+                "loggingLevel"
+            ],
+            "type": "object"
         }
-      }
-    }
-  }
+    },
+    "properties": {
+        "apiBaseURL": {
+            "type": "string"
+        },
+        "appInsightsKey": {
+            "type": "string"
+        },
+        "authentication": {
+            "$ref": "#/definitions/IAuthenticationConfig"
+        },
+        "logging": {
+            "$ref": "#/definitions/ILogging"
+        }
+    },
+    "required": [
+        "apiBaseURL",
+        "appInsightsKey",
+        "authentication",
+        "logging"
+    ],
+    "type": "object"
 }
+

@@ -1,6 +1,6 @@
 import { HarnessPredicate, LocatorFactory } from '@angular/cdk/testing';
 import { MatDatepickerToggleHarness } from '@angular/material/datepicker/testing';
-import { IdHarnessFilters } from './id-harness.filter';
+import { IdHarnessFilters } from './id-harness.filter.ts.template';
 
 
 export class MatDatepickerToggleTestingHarness extends MatDatepickerToggleHarness {

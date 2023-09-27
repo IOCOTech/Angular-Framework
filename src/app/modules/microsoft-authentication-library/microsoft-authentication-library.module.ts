@@ -1,9 +1,9 @@
-import { Location } from "@angular/common";
+import { Location } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { MsalBroadcastService, MsalInterceptor, MsalModule, MsalService, MSAL_GUARD_CONFIG, MSAL_INSTANCE, MSAL_INTERCEPTOR_CONFIG } from '@azure/msal-angular';
-import { ServiceConfig } from 'src/app/services/config.service/config.service';
+import { ServiceConfig } from 'src/app/services/config/config.service';
 import { MSALGuardConfigFactory, MSALInstanceFactory, MSALInterceptorConfigFactory } from 'src/environments/msal/msal.config';
 import { FactoryRouteGuard } from './route-guard/route-guard.factory';
 import { AbstractRouteGuard } from './route-guard/route-mock.guard.abstract';

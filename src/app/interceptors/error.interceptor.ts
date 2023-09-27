@@ -8,7 +8,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { ServiceMonitoring } from '../services/monitor.service/monitor.service';
+import { ServiceMonitoring } from '../services/monitor/monitor.service';
 
 @Injectable()
 export class InterceptorError implements HttpInterceptor {
